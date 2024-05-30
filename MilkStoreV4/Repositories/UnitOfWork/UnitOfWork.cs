@@ -17,84 +17,45 @@ namespace Repositories.UnitOfWork
         private GenericRepository<MilkType> _milkType;
         private GenericRepository<OrderDetail> _orderDetail;
         private GenericRepository<Comment> _comment;
-
+        private GenericRepository<Admin> _admin;
+        private GenericRepository<Order> _order;
+        private GenericRepository<User> _user;
+        private GenericRepository<Role> _role;
+        private GenericRepository<Staff> _staff;
+        private GenericRepository<Member> _member;
+        private GenericRepository<Voucher> _voucher;
 
         public UnitOfWork(MilkStoreContext context)
         {
             _context = context;
         }
 
-        public GenericRepository<Milk> MilkRepository
+        public GenericRepository<Category> CategoryRepository
         {
             get
             {
-                if (_milk == null)
+                if (_category == null)
                 {
-                    this._milk = new GenericRepository<Milk>(_context);
+                    this._category = new GenericRepository<Category>(_context);
                 }
-                return _milk;
+                return _category;
+            }
+
+        }
+        public GenericRepository<Product> ProductRepository
+        {
+            get
+            {
+                if (_product == null)
+                {
+                    this._product = new GenericRepository<Product>(_context);
+                }
+                return _product;
             }
         }
 
-        public GenericRepository<Brand> BrandRepository
-        {
-            get
-            {
-                if (_brand == null)
-                {
-                    this._brand = new GenericRepository<Brand>(_context);
-                }
-                return _brand;
-            }
         }
 
-        public GenericRepository<MilkType> MilkTypeRepository
-        {
-            get
-            {
-                if (_milkType == null)
-                {
-                    this._milkType = new GenericRepository<MilkType>(_context);
-                }
-                return _milkType;
-            }
-        }
-
-        public GenericRepository<MilkPicture> MilkPictureRepository
-        {
-            get
-            {
-                if (_milkPicture == null)
-                {
-                    this._milkPicture = new GenericRepository<MilkPicture>(_context);
-                }
-                return _milkPicture;
-            }
-        }
-
-        public GenericRepository<Comment> CommentRepository
-        {
-            get
-            {
-                if (_comment == null)
-                {
-                    this._comment = new GenericRepository<Comment>(_context);
-                }
-                return _comment;
-            }
-        }
-
-        public GenericRepository<OrderDetail> OrderDetailRepository
-        {
-            get
-            {
-                if (_orderDetail == null)
-                {
-                    this._orderDetail = new GenericRepository<OrderDetail>(_context);
-                }
-                return _orderDetail;
-            }
-        }
 
         public void Save()
         {

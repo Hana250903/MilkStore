@@ -21,5 +21,12 @@ namespace Repositories.UnitOfWork
         GenericRepository<OrderDetail> OrderDetailRepository { get; }
 
 
+        GenericRepository<Admin> AdminRepository { get; }
+        GenericRepository<User> UserRepository { get; }
+        GenericRepository<Role> RoleRepository { get; }
+        GenericRepository<Staff> StaffRepository { get; }
+        GenericRepository<Member> MemberRepository { get; }
+        GenericRepository<Order> OrderRepository { get; }
+        GenericRepository<Voucher> VoucherRepository { get; }
     }
 }

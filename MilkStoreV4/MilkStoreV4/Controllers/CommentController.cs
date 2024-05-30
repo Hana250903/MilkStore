@@ -22,5 +22,13 @@ namespace MilkStoreV4.Controllers
 
             return Ok(comments);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetById([FromRoute]int id)
+        {
+            var comment = _unitOfWork.CommentRepository.GetByID(id);
+            return Ok(comment);
+        }
     }
 }

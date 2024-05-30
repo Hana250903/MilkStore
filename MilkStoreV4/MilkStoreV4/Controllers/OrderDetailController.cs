@@ -21,5 +21,13 @@ namespace MilkStoreV4.Controllers
             var orderDetails = _unitOfWork.OrderDetailRepository.Get();
             return Ok(orderDetails);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetById([FromRoute]int id)
+        {
+            var orderDetail = _unitOfWork.OrderDetailRepository.GetByID(id);
+            return Ok(orderDetail);
+        }
     }
 }

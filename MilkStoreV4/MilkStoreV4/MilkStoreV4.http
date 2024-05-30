@@ -1,0 +1,6 @@
+@MilkStoreV4_HostAddress = http://localhost:5209
+
+GET {{MilkStoreV4_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

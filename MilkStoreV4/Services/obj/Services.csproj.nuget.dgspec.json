@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SWP\\Project\\MilkStoreV4\\Services\\Services.csproj": {}
+    "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\Services\\Services.csproj": {}
   },
   "projects": {
-    "D:\\SWP\\Project\\MilkStoreV4\\Services\\Services.csproj": {
+    "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SWP\\Project\\MilkStoreV4\\Services\\Services.csproj",
+        "projectUniqueName": "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "D:\\SWP\\Project\\MilkStoreV4\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\kirit\\.nuget\\packages\\",
-        "outputPath": "D:\\SWP\\Project\\MilkStoreV4\\Services\\obj\\",
+        "projectPath": "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kirit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

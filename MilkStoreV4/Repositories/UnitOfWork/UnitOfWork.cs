@@ -11,8 +11,12 @@ namespace Repositories.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private MilkStoreContext _context;
-        private GenericRepository<Category> _category;
-        private GenericRepository<Product> _product;
+        private GenericRepository<Milk> _milk;
+        private GenericRepository<MilkPicture> _milkPicture;
+        private GenericRepository<Brand> _brand;
+        private GenericRepository<MilkType> _milkType;
+        private GenericRepository<OrderDetail> _orderDetail;
+        private GenericRepository<Comment> _comment;
 
 
         public UnitOfWork(MilkStoreContext context)
@@ -20,31 +24,77 @@ namespace Repositories.UnitOfWork
             _context = context;
         }
 
-        public GenericRepository<Category> CategoryRepository
+        public GenericRepository<Milk> MilkRepository
         {
             get
             {
-                if (_category == null)
+                if (_milk == null)
                 {
-                    this._category = new GenericRepository<Category>(_context);
+                    this._milk = new GenericRepository<Milk>(_context);
                 }
-                return _category;
+                return _milk;
             }
-
         }
-        public GenericRepository<Product> ProductRepository
+
+        public GenericRepository<Brand> BrandRepository
         {
             get
             {
-                if (_product == null)
+                if (_brand == null)
                 {
-                    this._product = new GenericRepository<Product>(_context);
+                    this._brand = new GenericRepository<Brand>(_context);
                 }
-                return _product;
+                return _brand;
             }
-
         }
 
+        public GenericRepository<MilkType> MilkTypeRepository
+        {
+            get
+            {
+                if (_milkType == null)
+                {
+                    this._milkType = new GenericRepository<MilkType>(_context);
+                }
+                return _milkType;
+            }
+        }
+
+        public GenericRepository<MilkPicture> MilkPictureRepository
+        {
+            get
+            {
+                if (_milkPicture == null)
+                {
+                    this._milkPicture = new GenericRepository<MilkPicture>(_context);
+                }
+                return _milkPicture;
+            }
+        }
+
+        public GenericRepository<Comment> CommentRepository
+        {
+            get
+            {
+                if (_comment == null)
+                {
+                    this._comment = new GenericRepository<Comment>(_context);
+                }
+                return _comment;
+            }
+        }
+
+        public GenericRepository<OrderDetail> OrderDetailRepository
+        {
+            get
+            {
+                if (_orderDetail == null)
+                {
+                    this._orderDetail = new GenericRepository<OrderDetail>(_context);
+                }
+                return _orderDetail;
+            }
+        }
 
         public void Save()
         {

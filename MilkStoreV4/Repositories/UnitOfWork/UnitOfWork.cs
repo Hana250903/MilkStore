@@ -30,30 +30,160 @@ namespace Repositories.UnitOfWork
             _context = context;
         }
 
-        public GenericRepository<Category> CategoryRepository
+        public GenericRepository<Milk> MilkRepository
         {
             get
             {
-                if (_category == null)
+                if (_milk == null)
                 {
-                    this._category = new GenericRepository<Category>(_context);
+                    this._milk = new GenericRepository<Milk>(_context);
                 }
-                return _category;
+                return _milk;
             }
-
         }
-        public GenericRepository<Product> ProductRepository
+
+        public GenericRepository<Brand> BrandRepository
         {
             get
             {
-                if (_product == null)
+                if (_brand == null)
                 {
-                    this._product = new GenericRepository<Product>(_context);
+                    this._brand = new GenericRepository<Brand>(_context);
                 }
-                return _product;
+                return _brand;
             }
         }
 
+        public GenericRepository<MilkType> MilkTypeRepository
+        {
+            get
+            {
+                if (_milkType == null)
+                {
+                    this._milkType = new GenericRepository<MilkType>(_context);
+                }
+                return _milkType;
+            }
+        }
+
+        public GenericRepository<MilkPicture> MilkPictureRepository
+        {
+            get
+            {
+                if (_milkPicture == null)
+                {
+                    this._milkPicture = new GenericRepository<MilkPicture>(_context);
+                }
+                return _milkPicture;
+            }
+        }
+
+        public GenericRepository<Comment> CommentRepository
+        {
+            get
+            {
+                if (_comment == null)
+                {
+                    this._comment = new GenericRepository<Comment>(_context);
+                }
+                return _comment;
+            }
+        }
+
+        public GenericRepository<OrderDetail> OrderDetailRepository
+        {
+            get
+            {
+                if (_orderDetail == null)
+                {
+                    this._orderDetail = new GenericRepository<OrderDetail>(_context);
+                }
+                return _orderDetail;
+            }
+        }
+
+        public GenericRepository<Admin> AdminRepository
+        {
+            get
+            {
+                if (_admin == null)
+                {
+                    this._admin = new GenericRepository<Admin>(_context);
+                }
+                return _admin;
+            }
+        }
+
+        public GenericRepository<User> UserRepository
+        {
+            get
+            {
+                if (_user == null)
+                {
+                    this._user = new GenericRepository<User>(_context);
+                }
+                return _user;
+            }
+        }
+
+        public GenericRepository<Role> RoleRepository
+        {
+            get
+            {
+                if (_role == null)
+                {
+                    this._role = new GenericRepository<Role>(_context);
+                }
+                return _role;
+            }
+        }
+
+        public GenericRepository<Staff> StaffRepository
+        {
+            get
+            {
+                if (_staff == null)
+                {
+                    this._staff = new GenericRepository<Staff>(_context);
+                }
+                return _staff;
+            }
+        }
+
+        public GenericRepository<Member> MemberRepository
+        {
+            get
+            {
+                if (_member == null)
+                {
+                    this._member = new GenericRepository<Member>(_context);
+                }
+                return _member;
+            }
+        }
+
+        public GenericRepository<Order> OrderRepository
+        {
+            get
+            {
+                if (_order == null)
+                {
+                    this._order = new GenericRepository<Order>(_context);
+                }
+                return _order;
+            }
+        }
+
+        public GenericRepository<Voucher> VoucherRepository
+        {
+            get
+            {
+                if (_voucher == null)
+                {
+                    this._voucher = new GenericRepository<Voucher>(_context);
+                }
+                return _voucher;
+            }
         }
 
 

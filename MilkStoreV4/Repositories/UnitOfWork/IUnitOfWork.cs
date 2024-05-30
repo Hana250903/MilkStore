@@ -19,8 +19,6 @@ namespace Repositories.UnitOfWork
         GenericRepository<MilkPicture> MilkPictureRepository { get; }
         GenericRepository<Comment> CommentRepository { get; }
         GenericRepository<OrderDetail> OrderDetailRepository { get; }
-
-
         GenericRepository<Admin> AdminRepository { get; }
         GenericRepository<User> UserRepository { get; }
         GenericRepository<Role> RoleRepository { get; }

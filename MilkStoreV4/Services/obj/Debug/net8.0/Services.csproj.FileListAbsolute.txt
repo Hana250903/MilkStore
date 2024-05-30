@@ -9,3 +9,15 @@ D:\SWP\Project\MilkStoreV4\Services\obj\Debug\net8.0\Services.dll
 D:\SWP\Project\MilkStoreV4\Services\obj\Debug\net8.0\refint\Services.dll
 D:\SWP\Project\MilkStoreV4\Services\obj\Debug\net8.0\Services.pdb
 D:\SWP\Project\MilkStoreV4\Services\obj\Debug\net8.0\ref\Services.dll
+D:\MilkStore\MilkStoreV4\Services\bin\Debug\net8.0\Services.deps.json
+D:\MilkStore\MilkStoreV4\Services\bin\Debug\net8.0\Services.dll
+D:\MilkStore\MilkStoreV4\Services\bin\Debug\net8.0\Services.pdb
+D:\MilkStore\MilkStoreV4\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\MilkStore\MilkStoreV4\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+D:\MilkStore\MilkStoreV4\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+D:\MilkStore\MilkStoreV4\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+D:\MilkStore\MilkStoreV4\Services\obj\Debug\net8.0\Services.sourcelink.json
+D:\MilkStore\MilkStoreV4\Services\obj\Debug\net8.0\Services.dll
+D:\MilkStore\MilkStoreV4\Services\obj\Debug\net8.0\refint\Services.dll
+D:\MilkStore\MilkStoreV4\Services\obj\Debug\net8.0\Services.pdb
+D:\MilkStore\MilkStoreV4\Services\obj\Debug\net8.0\ref\Services.dll

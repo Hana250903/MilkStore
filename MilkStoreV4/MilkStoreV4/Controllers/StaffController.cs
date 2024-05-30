@@ -21,5 +21,13 @@ namespace MilkStoreV4.Controllers
             var staffs = _unitOfWork.StaffRepository.Get();
             return Ok(staffs);
         }
+
+        [HttpGet("{id:int}")]
+        public IActionResult GetById([FromRoute] int id) 
+        {
+            var staffs = _unitOfWork.StaffRepository.GetByID(id);
+            return Ok(staffs);
+        }
+
     }
 }

@@ -20,5 +20,12 @@ namespace MilkStoreV4.Controllers
             var vouchers = _unitOfWork.VoucherRepository.Get();
             return Ok(vouchers);
         }
+
+        [HttpGet("{id:int}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            var vouchers = _unitOfWork.VoucherRepository.GetByID(id);
+            return Ok(vouchers);
+        }
     }
 }

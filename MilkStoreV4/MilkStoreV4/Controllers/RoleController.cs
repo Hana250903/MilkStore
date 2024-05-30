@@ -21,5 +21,12 @@ namespace MilkStoreV4.Controllers
             var roles = _unitOfWork.RoleRepository.Get();
             return Ok(roles);
         }
+
+        [HttpGet("{id:int}")]
+        public IActionResult GetById([FromRoute] int id) 
+        {
+            var roles = _unitOfWork.StaffRepository.GetByID(id);
+            return Ok(roles);
+        }
     }
 }

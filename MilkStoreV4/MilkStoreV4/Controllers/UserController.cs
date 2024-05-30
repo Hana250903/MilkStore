@@ -21,5 +21,12 @@ namespace MilkStoreV4.Controllers
             var users = _unitOfWork.UserRepository.Get();
             return Ok(users);
         }
+
+        [HttpGet("{id:int}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            var users = _unitOfWork.UserRepository.GetByID(id);
+            return Ok(users);
+        }
     }
 }

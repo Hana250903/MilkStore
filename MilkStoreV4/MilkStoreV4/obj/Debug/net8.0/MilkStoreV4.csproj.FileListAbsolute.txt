@@ -30,3 +30,4 @@ D:\SWP\Project\MilkStoreV4\MilkStoreV4\obj\Debug\net8.0\refint\MilkStoreV4.dll
 D:\SWP\Project\MilkStoreV4\MilkStoreV4\obj\Debug\net8.0\MilkStoreV4.pdb
 D:\SWP\Project\MilkStoreV4\MilkStoreV4\obj\Debug\net8.0\MilkStoreV4.genruntimeconfig.cache
 D:\SWP\Project\MilkStoreV4\MilkStoreV4\obj\Debug\net8.0\ref\MilkStoreV4.dll
+D:\SWP\Project\MilkStoreV4\MilkStoreV4\obj\Debug\net8.0\MilkStoreV4.sourcelink.json

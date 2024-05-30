@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\MilkStoreV4\\MilkStoreV4.csproj": {}
+    "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\MilkStoreV4.csproj": {}
   },
   "projects": {
-    "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\MilkStoreV4\\MilkStoreV4.csproj": {
+    "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\MilkStoreV4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\MilkStoreV4\\MilkStoreV4.csproj",
+        "projectUniqueName": "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\MilkStoreV4.csproj",
         "projectName": "MilkStoreV4",
-        "projectPath": "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\MilkStoreV4\\MilkStoreV4.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\MilkStoreV4\\obj\\",
+        "projectPath": "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\MilkStoreV4.csproj",
+        "packagesPath": "C:\\Users\\kirit\\.nuget\\packages\\",
+        "outputPath": "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kirit\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,7 +28,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\MilkStore\\MilkStoreV4\\Repositories\\Repositories.csproj": {
+                "projectPath": "D:\\MilkStore\\MilkStoreV4\\Repositories\\Repositories.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -66,6 +70,89 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\MilkStore\\MilkStoreV4\\Repositories\\Repositories.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\MilkStore\\MilkStoreV4\\Repositories\\Repositories.csproj",
+        "projectName": "Repositories",
+        "projectPath": "D:\\MilkStore\\MilkStoreV4\\Repositories\\Repositories.csproj",
+        "packagesPath": "C:\\Users\\kirit\\.nuget\\packages\\",
+        "outputPath": "D:\\MilkStore\\MilkStoreV4\\Repositories\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\kirit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

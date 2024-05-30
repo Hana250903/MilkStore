@@ -4107,19 +4107,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\kirit\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\Repositories\\Repositories.csproj",
+      "projectUniqueName": "D:\\MilkStore\\MilkStoreV4\\Repositories\\Repositories.csproj",
       "projectName": "Repositories",
-      "projectPath": "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\Repositories\\Repositories.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "E:\\kha\\Github\\MilkStore\\MilkStoreV4\\Repositories\\obj\\",
+      "projectPath": "D:\\MilkStore\\MilkStoreV4\\Repositories\\Repositories.csproj",
+      "packagesPath": "C:\\Users\\kirit\\.nuget\\packages\\",
+      "outputPath": "D:\\MilkStore\\MilkStoreV4\\Repositories\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kirit\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

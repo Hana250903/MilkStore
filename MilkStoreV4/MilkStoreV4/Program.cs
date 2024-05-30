@@ -1,4 +1,8 @@
 
+using Microsoft.EntityFrameworkCore;
+using Repositories.Models;
+using Repositories.UnitOfWork;
+
 namespace MilkStoreV4
 {
     public class Program
@@ -13,6 +17,13 @@ namespace MilkStoreV4
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<MilkStoreContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("MilkStoreContext"));
+            });
+
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
 

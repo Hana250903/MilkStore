@@ -1,4 +1,5 @@
-﻿using Repositories.Repository;
+﻿using Repositories.Models;
+using Repositories.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,12 @@ namespace Repositories.UnitOfWork
         void Save();
 
         Task<UnitOfWork> SaveAsync();
-        GenericRepository<Category> CategoryRepository { get; }
-        GenericRepository<Product> ProductRepository { get; }
-
-
+        GenericRepository<Admin> AdminRepository { get; }
+        GenericRepository<User> UserRepository { get; }
+        GenericRepository<Role> RoleRepository { get; }
+        GenericRepository<Staff> StaffRepository { get; }
+        GenericRepository<Member> MemberRepository { get; }
+        GenericRepository<Order> OrderRepository { get; }
+        GenericRepository<Voucher> VoucherRepository { get; }
     }
 }

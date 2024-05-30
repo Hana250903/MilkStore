@@ -11,40 +11,103 @@ namespace Repositories.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private MilkStoreContext _context;
-        private GenericRepository<Category> _category;
-        private GenericRepository<Product> _product;
-
+        private GenericRepository<Admin> _admin;
+        private GenericRepository<Order> _order;
+        private GenericRepository<User> _user;
+        private GenericRepository<Role> _role;
+        private GenericRepository<Staff> _staff;
+        private GenericRepository<Member> _member;
+        private GenericRepository<Voucher> _voucher;
 
         public UnitOfWork(MilkStoreContext context)
         {
             _context = context;
         }
 
-        public GenericRepository<Category> CategoryRepository
+        
+        public GenericRepository<Admin> AdminRepository
         {
             get
             {
-                if (_category == null)
+                if (_admin == null)
                 {
-                    this._category = new GenericRepository<Category>(_context);
+                    this._admin = new GenericRepository<Admin>(_context);
                 }
-                return _category;
+                return _admin;
             }
-
         }
-        public GenericRepository<Product> ProductRepository
+
+        public GenericRepository<User> UserRepository
         {
             get
             {
-                if (_product == null)
+                if (_user == null)
                 {
-                    this._product = new GenericRepository<Product>(_context);
+                    this._user = new GenericRepository<User>(_context);
                 }
-                return _product;
+                return _user;
             }
-
         }
 
+        public GenericRepository<Role> RoleRepository
+        {
+            get
+            {
+                if (_role == null)
+                {
+                    this._role = new GenericRepository<Role>(_context);
+                }
+                return _role;
+            }
+        }
+
+        public GenericRepository<Staff> StaffRepository
+        {
+            get
+            {
+                if (_staff == null)
+                {
+                    this._staff = new GenericRepository<Staff>(_context);
+                }
+                return _staff;
+            }
+        }
+
+        public GenericRepository<Member> MemberRepository
+        {
+            get
+            {
+                if (_member == null)
+                {
+                    this._member = new GenericRepository<Member>(_context);
+                }
+                return _member;
+            }
+        }
+
+        public GenericRepository<Order> OrderRepository
+        {
+            get
+            {
+                if (_order == null)
+                {
+                    this._order = new GenericRepository<Order>(_context);
+                }
+                return _order;
+            }
+        }
+
+        public GenericRepository<Voucher> VoucherRepository
+        {
+            get
+            {
+                if (_voucher == null)
+                {
+                    this._voucher = new GenericRepository<Voucher>(_context);
+                }
+                return _voucher;
+            }
+        }
 
         public void Save()
         {

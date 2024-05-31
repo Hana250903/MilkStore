@@ -30,5 +30,14 @@ namespace MilkStoreV4.Controllers
             var comment = _unitOfWork.CommentRepository.GetByID(id);
             return Ok(comment);
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute]int id)
+        {
+            var comment = _unitOfWork.MilkRepository.GetByID(id);
+            _unitOfWork.CommentRepository.Delete(comment);
+            return NoContent();
+        }
     }
 }

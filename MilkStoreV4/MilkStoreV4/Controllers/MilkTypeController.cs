@@ -30,5 +30,14 @@ namespace MilkStoreV4.Controllers
             var milkType = _unitOfWork.MilkTypeRepository.GetByID(id);
             return Ok(milkType);
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute]int id)
+        {
+            var milkType = _unitOfWork.MilkTypeRepository.GetByID(id);
+            _unitOfWork.MilkTypeRepository.Delete(id);
+            return NoContent();
+        }
     }
 }

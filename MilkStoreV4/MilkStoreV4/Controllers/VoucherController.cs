@@ -27,5 +27,15 @@ namespace MilkStoreV4.Controllers
             var vouchers = _unitOfWork.VoucherRepository.GetByID(id);
             return Ok(vouchers);
         }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            var vouchers = _unitOfWork.VoucherRepository.GetByID(id);
+            _unitOfWork.VoucherRepository.Delete(vouchers);
+
+            return NoContent();
+        }
     }
 }

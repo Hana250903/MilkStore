@@ -4,7 +4,7 @@ using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
 {
-    [Route("api/milk-picture")]
+    [Route("api/milk-pictures")]
     [ApiController]
     public class MilkPictureController : ControllerBase
     {
@@ -27,6 +27,10 @@ namespace MilkStoreV4.Controllers
         public IActionResult GetById([FromRoute] int id)
         {
             var milkPicture = _unitOfWork.MilkPictureRepository.GetByID(id);
+            if (milkPicture == null)
+            {
+                return BadRequest();
+            }
             return Ok(milkPicture);
         }
 

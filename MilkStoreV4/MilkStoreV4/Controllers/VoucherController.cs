@@ -4,7 +4,7 @@ using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
 {
-    [Route("api/voucher")]
+    [Route("api/vouchers")]
     [ApiController]
     public class VoucherController : ControllerBase
     {
@@ -25,6 +25,10 @@ namespace MilkStoreV4.Controllers
         public IActionResult GetById([FromRoute] int id)
         {
             var vouchers = _unitOfWork.VoucherRepository.GetByID(id);
+            if (vouchers == null)
+            {
+                return BadRequest();
+            }
             return Ok(vouchers);
         }
 

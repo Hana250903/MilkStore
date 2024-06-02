@@ -4,7 +4,7 @@ using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
 {
-    [Route("api/user")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -26,6 +26,10 @@ namespace MilkStoreV4.Controllers
         public IActionResult GetById([FromRoute] int id)
         {
             var users = _unitOfWork.UserRepository.GetByID(id);
+            if (users == null)
+            {
+                return BadRequest();
+            }
             return Ok(users);
         }
 

@@ -40,6 +40,6 @@ namespace MilkStoreV4.Controllers
             var members = _unitOfWork.MemberRepository.GetByID(id);
             _unitOfWork.MemberRepository.Delete(members);
             return NoContent();
+        }
     }
-}
 }

@@ -35,11 +35,9 @@ namespace MilkStoreV4.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        public IActionResult Delete([FromRoute] int id)
-        {
+        public IActionResult Delete([FromRoute] int id) {
             var members = _unitOfWork.MemberRepository.GetByID(id);
             _unitOfWork.MemberRepository.Delete(members);
             return NoContent();
-        }
     }
 }

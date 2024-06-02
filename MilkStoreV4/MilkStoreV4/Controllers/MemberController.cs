@@ -4,7 +4,7 @@ using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
 {
-    [Route("api/member")]
+    [Route("api/members")]
     [ApiController]
     public class MemberController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll ()
+        public IActionResult GetAll()
         {
             var members = _unitOfWork.MemberRepository.Get();
             return Ok(members);
@@ -24,8 +24,12 @@ namespace MilkStoreV4.Controllers
 
         [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id)
-        { 
+        {
             var members = _unitOfWork.MemberRepository.GetByID(id);
+            if (members == null)
+            {
+                return BadRequest();
+            }
             return Ok(members);
         }
 

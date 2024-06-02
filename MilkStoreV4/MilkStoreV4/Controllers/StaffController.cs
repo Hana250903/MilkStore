@@ -4,7 +4,7 @@ using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
 {
-    [Route("api/staff")]
+    [Route("api/staffs")]
     [ApiController]
     public class StaffController : ControllerBase
     {
@@ -26,6 +26,10 @@ namespace MilkStoreV4.Controllers
         public IActionResult GetById([FromRoute] int id) 
         {
             var staffs = _unitOfWork.StaffRepository.GetByID(id);
+            if (staffs == null)
+            {
+                return BadRequest();
+            }
             return Ok(staffs);
         }
 

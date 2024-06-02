@@ -4,7 +4,7 @@ using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
 {
-    [Route("api/brand")]
+    [Route("api/brands")]
     [ApiController]
     public class BrandController : ControllerBase
     {
@@ -28,6 +28,10 @@ namespace MilkStoreV4.Controllers
         public IActionResult GetById([FromRoute]int id)
         {
             var brand = _unitOfWork.BrandRepository.GetByID(id);
+            if (brand == null)
+            {
+                return BadRequest();
+            }
             return Ok(brand);
         }
 

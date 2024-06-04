@@ -28,7 +28,7 @@ namespace MilkStoreV4.Controllers
             var staffs = _unitOfWork.StaffRepository.GetByID(id);
             if (staffs == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(staffs);
         }

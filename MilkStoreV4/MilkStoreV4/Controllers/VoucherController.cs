@@ -27,7 +27,7 @@ namespace MilkStoreV4.Controllers
             var vouchers = _unitOfWork.VoucherRepository.GetByID(id);
             if (vouchers == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(vouchers);
         }

@@ -29,7 +29,7 @@ namespace MilkStoreV4.Controllers
             var milkPicture = _unitOfWork.MilkPictureRepository.GetByID(id);
             if (milkPicture == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(milkPicture);
         }

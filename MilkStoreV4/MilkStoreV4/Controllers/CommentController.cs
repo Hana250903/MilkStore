@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Repositories.Models;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -30,7 +31,7 @@ namespace MilkStoreV4.Controllers
             var comment = _unitOfWork.CommentRepository.GetByID(id);
             if (comment == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(comment);
         }
@@ -42,6 +43,14 @@ namespace MilkStoreV4.Controllers
             var comment = _unitOfWork.MilkRepository.GetByID(id);
             _unitOfWork.CommentRepository.Delete(comment);
             return NoContent();
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] Comment comment)
+        {
+            _unitOfWork.CommentRepository.Insert(comment);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById), new {id = comment.CommentId}, comment);
         }
     }
 }

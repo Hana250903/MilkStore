@@ -28,7 +28,7 @@ namespace MilkStoreV4.Controllers
             var roles = _unitOfWork.RoleRepository.GetByID(id);
             if(roles == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             return Ok(roles);

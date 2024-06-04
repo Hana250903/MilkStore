@@ -28,7 +28,7 @@ namespace MilkStoreV4.Controllers
             var admins = _unitOfWork.AdminRepository.GetByID(id);
             if (admins == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(admins);
         }

@@ -30,7 +30,7 @@ namespace MilkStoreV4.Controllers
             var milkType = _unitOfWork.MilkTypeRepository.GetByID(id);
             if (milkType == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(milkType);
         }

@@ -28,7 +28,7 @@ namespace MilkStoreV4.Controllers
             var members = _unitOfWork.MemberRepository.GetByID(id);
             if (members == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(members);
         }

@@ -30,7 +30,7 @@ namespace MilkStoreV4.Controllers
             var brand = _unitOfWork.BrandRepository.GetByID(id);
             if (brand == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(brand);
         }

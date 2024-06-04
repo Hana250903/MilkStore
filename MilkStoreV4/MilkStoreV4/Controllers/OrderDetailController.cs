@@ -29,7 +29,7 @@ namespace MilkStoreV4.Controllers
             var orderDetail = _unitOfWork.OrderDetailRepository.GetByID(id);
             if (orderDetail == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(orderDetail);
         }

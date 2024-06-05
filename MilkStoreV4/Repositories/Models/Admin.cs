@@ -11,7 +11,7 @@ public partial class Admin
 
     public int UserId { get; set; }
 
-    public string Desciption { get; set; }
+    public string Desciption { get; set; } = string.Empty;
 
     public virtual User User { get; set; }
 }

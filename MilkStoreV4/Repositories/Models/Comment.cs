@@ -11,11 +11,11 @@ public partial class Comment
 
     public int MemberId { get; set; }
 
-    public DateTime DateCreate { get; set; }
+    public DateTime DateCreate { get; set; } = DateTime.Now;
 
-    public string Content { get; set; }
+    public string Content { get; set; } = string.Empty;
 
-    public string Picture { get; set; }
+    public string Picture { get; set; } = string.Empty ;
 
     public double Rate { get; set; }
 

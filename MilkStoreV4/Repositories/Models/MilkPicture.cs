@@ -11,7 +11,7 @@ public partial class MilkPicture
 
     public int MilkId { get; set; }
 
-    public string Picture { get; set; }
+    public string Picture { get; set; } = string.Empty;
 
     public virtual Milk Milk { get; set; }
 }

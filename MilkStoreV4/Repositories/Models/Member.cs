@@ -11,7 +11,7 @@ public partial class Member
 
     public int UserId { get; set; }
 
-    public string Desciption { get; set; }
+    public string Desciption { get; set; } = string.Empty;
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 

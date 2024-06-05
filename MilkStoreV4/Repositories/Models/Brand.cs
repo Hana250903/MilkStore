@@ -9,7 +9,7 @@ public partial class Brand
 {
     public int BrandId { get; set; }
 
-    public string BrandName { get; set; }
+    public string BrandName { get; set; } = string.Empty;
 
     public virtual ICollection<Milk> Milk { get; set; } = new List<Milk>();
 }

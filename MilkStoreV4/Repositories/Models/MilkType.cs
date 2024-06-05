@@ -7,9 +7,9 @@ namespace Repositories.Models;
 
 public partial class MilkType
 {
-    public string MilkTypeId { get; set; }
+    public int MilkTypeId { get; set; }
 
-    public string TypeName { get; set; }
+    public string TypeName { get; set; } = string.Empty;
 
     public virtual ICollection<Milk> Milk { get; set; } = new List<Milk>();
 }

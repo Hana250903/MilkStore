@@ -17,7 +17,7 @@ public partial class Order
 
     public double Amount { get; set; }
 
-    public string OrderStatus { get; set; }
+    public string OrderStatus { get; set; } = string.Empty;
 
     public virtual Member Member { get; set; }
 

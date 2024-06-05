@@ -145,7 +145,6 @@ public partial class MilkStoreContext : DbContext
         {
             entity.ToTable("MilkType");
 
-            entity.Property(e => e.MilkTypeId).HasMaxLength(50);
             entity.Property(e => e.TypeName)
                 .IsRequired()
                 .HasMaxLength(50);

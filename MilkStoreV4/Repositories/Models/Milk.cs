@@ -9,7 +9,7 @@ public partial class Milk
 {
     public int MilkId { get; set; }
 
-    public string MilkName { get; set; }
+    public string MilkName { get; set; } = string.Empty;
 
     public int BrandId { get; set; }
 
@@ -17,9 +17,9 @@ public partial class Milk
 
     public int MilkTypeId { get; set; }
 
-    public string AppropriateAge { get; set; }
+    public string AppropriateAge { get; set; } = string.Empty;
 
-    public string StorageInstructions { get; set; }
+    public string StorageInstructions { get; set; } = string.Empty;
 
     public double Price { get; set; }
 

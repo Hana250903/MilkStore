@@ -9,7 +9,7 @@ public partial class Voucher
 {
     public int VoucherId { get; set; }
 
-    public string Title { get; set; }
+    public string Title { get; set; } = string.Empty;
 
     public DateTime StartDate { get; set; }
 
@@ -19,7 +19,7 @@ public partial class Voucher
 
     public int Quantity { get; set; }
 
-    public string Status { get; set; }
+    public string Status { get; set; } = string.Empty;
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

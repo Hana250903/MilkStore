@@ -1,8 +1,6 @@
-CREATE DATABASE [MilkStore]
-
 USE [MilkStore]
 GO
-/****** Object:  Table [dbo].[Admin]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[Admin]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -17,7 +15,7 @@ CREATE TABLE [dbo].[Admin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Brand]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[Brand]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -31,7 +29,7 @@ CREATE TABLE [dbo].[Brand](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Comment]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[Comment]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -39,7 +37,7 @@ GO
 CREATE TABLE [dbo].[Comment](
 	[CommentId] [int] IDENTITY(1,1) NOT NULL,
 	[MemberId] [int] NOT NULL,
-	[DateCreate] [date] NOT NULL,
+	[DateCreate] [datetime] NOT NULL,
 	[Content] [nvarchar](500) NOT NULL,
 	[Picture] [nvarchar](100) NOT NULL,
 	[Rate] [float] NOT NULL,
@@ -50,7 +48,7 @@ CREATE TABLE [dbo].[Comment](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Member]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[Member]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -65,7 +63,7 @@ CREATE TABLE [dbo].[Member](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Milk]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[Milk]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -86,7 +84,7 @@ CREATE TABLE [dbo].[Milk](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MilkPicture]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[MilkPicture]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -101,7 +99,7 @@ CREATE TABLE [dbo].[MilkPicture](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MilkType]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[MilkType]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -115,7 +113,7 @@ CREATE TABLE [dbo].[MilkType](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Order]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[Order]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -124,7 +122,7 @@ CREATE TABLE [dbo].[Order](
 	[OrderId] [int] IDENTITY(1,1) NOT NULL,
 	[MemberId] [int] NOT NULL,
 	[VoucherId] [int] NOT NULL,
-	[DateCreate] [date] NOT NULL,
+	[DateCreate] [datetime] NOT NULL,
 	[Amount] [float] NOT NULL,
 	[OrderStatus] [nvarchar](20) NOT NULL,
  CONSTRAINT [PK_OrderDetail] PRIMARY KEY CLUSTERED 
@@ -133,7 +131,7 @@ CREATE TABLE [dbo].[Order](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[OrderDetail]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[OrderDetail]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -150,7 +148,7 @@ CREATE TABLE [dbo].[OrderDetail](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Role]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[Role]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -164,7 +162,7 @@ CREATE TABLE [dbo].[Role](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Staff]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[Staff]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -179,7 +177,7 @@ CREATE TABLE [dbo].[Staff](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[User]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[User]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -188,19 +186,19 @@ CREATE TABLE [dbo].[User](
 	[UserId] [int] IDENTITY(1,1) NOT NULL,
 	[UserName] [nvarchar](20) NOT NULL,
 	[Phone] [nvarchar](10) NOT NULL,
-	[DateOfBirth] [date] NOT NULL,
+	[DateOfBirth] [datetime] NOT NULL,
 	[Gender] [nvarchar](10) NOT NULL,
 	[Address] [nvarchar](100) NOT NULL,
 	[RoleId] [int] NOT NULL,
 	[ProfilePicture] [nvarchar](100) NOT NULL,
-	[DateCreate] [date] NOT NULL,
+	[DateCreate] [datetime] NOT NULL,
  CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
 (
 	[UserId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Voucher]    Script Date: 30/05/2024 11:13:01 ******/
+/****** Object:  Table [dbo].[Voucher]    Script Date: 05/06/2024 13:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -208,8 +206,8 @@ GO
 CREATE TABLE [dbo].[Voucher](
 	[VoucherId] [int] IDENTITY(1,1) NOT NULL,
 	[Title] [nvarchar](50) NOT NULL,
-	[StartDate] [date] NOT NULL,
-	[EndDate] [date] NOT NULL,
+	[StartDate] [datetime] NOT NULL,
+	[EndDate] [datetime] NOT NULL,
 	[Discount] [float] NOT NULL,
 	[Quantity] [int] NOT NULL,
 	[Status] [nvarchar](20) NOT NULL,

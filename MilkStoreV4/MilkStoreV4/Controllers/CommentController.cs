@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.Models;
 using Repositories.UnitOfWork;
 
@@ -28,7 +30,7 @@ namespace MilkStoreV4.Controllers
         [Route("{id}")]
         public IActionResult GetById([FromRoute]int id)
         {
-            var comment = _unitOfWork.CommentRepository.GetByID(id);
+            var comment = CommentMapper.ToCommentDTO(_unitOfWork.CommentRepository.GetByID(id));
             if (comment == null)
             {
                 return NotFound();
@@ -40,17 +42,26 @@ namespace MilkStoreV4.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute]int id)
         {
-            var comment = _unitOfWork.MilkRepository.GetByID(id);
+            var comment = CommentMapper.ToCommentDTO(_unitOfWork.CommentRepository.GetByID(id));
             _unitOfWork.CommentRepository.Delete(comment);
             return NoContent();
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Comment comment)
+        public IActionResult Create([FromBody] CreateCommentDTO createCommentDTO)
         {
+            var comment = CommentMapper.ToCommentFromCreateDTO(createCommentDTO);
             _unitOfWork.CommentRepository.Insert(comment);
             _unitOfWork.Save();
             return CreatedAtAction(nameof(GetById), new {id = comment.CommentId}, comment);
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateCommentDTO updateCommentDTO)
+        {
+            var comment = CommentMapper.ToCommentFromUpdateDTO(updateCommentDTO);
+            _unitOfWork.CommentRepository.Update(comment);
+            return NoContent();
         }
     }
 }

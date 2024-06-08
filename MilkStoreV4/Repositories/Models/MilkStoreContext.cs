@@ -40,7 +40,7 @@ public partial class MilkStoreContext : DbContext
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    => optionsBuilder.UseSqlServer("server =HANAYUKI\\SQLEXPRESS; database =MilkStore;uid=sa;pwd=12345;TrustServerCertificate=true");
+=> optionsBuilder.UseSqlServer("server =HANAYUKI\\SQLEXPRESS; database =MilkStore;uid=sa;pwd=12345;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -116,15 +116,15 @@ public partial class MilkStoreContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50);
 
-            entity.HasOne(d => d.AppropriateAgeNavigation).WithMany(p => p.Milk)
-                .HasForeignKey(d => d.AppropriateAge)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Milk_MilkType");
-
             entity.HasOne(d => d.Brand).WithMany(p => p.Milk)
                 .HasForeignKey(d => d.BrandId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Milk_Brand");
+
+            entity.HasOne(d => d.MilkType).WithMany(p => p.Milk)
+                .HasForeignKey(d => d.MilkTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Milk_MilkType");
         });
 
         modelBuilder.Entity<MilkPicture>(entity =>

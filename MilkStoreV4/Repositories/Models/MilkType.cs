@@ -9,7 +9,7 @@ public partial class MilkType
 {
     public int MilkTypeId { get; set; }
 
-    public string TypeName { get; set; } = string.Empty;
+    public string TypeName { get; set; }
 
     public virtual ICollection<Milk> Milk { get; set; } = new List<Milk>();
 }

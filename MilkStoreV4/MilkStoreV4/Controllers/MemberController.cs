@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -25,7 +27,7 @@ namespace MilkStoreV4.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            var members = _unitOfWork.MemberRepository.GetByID(id);
+            var members = MemberMapper.ToMemberDTO(_unitOfWork.MemberRepository.GetByID(id));
             if (members == null)
             {
                 return NotFound();
@@ -37,8 +39,25 @@ namespace MilkStoreV4.Controllers
         [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var members = _unitOfWork.MemberRepository.GetByID(id);
+            var members = MemberMapper.ToMemberDTO(_unitOfWork.MemberRepository.GetByID(id));
             _unitOfWork.MemberRepository.Delete(members);
+            return NoContent();
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateMemberDTO createMemberDTO)
+        {
+            var member = MemberMapper.ToMemberFromCreateDTO(createMemberDTO);
+            _unitOfWork.MemberRepository.Insert(member);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById), new {id = member.MemberId}, member)
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateMemberDTO updateMemberDTO)
+        {
+            var member = MemberMapper.ToMemberFromUpdateDTO(updateMemberDTO);
+            _unitOfWork.MemberRepository.Update(member);
             return NoContent();
         }
     }

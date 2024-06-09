@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -25,7 +27,7 @@ namespace MilkStoreV4.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id) 
         {
-            var staffs = _unitOfWork.StaffRepository.GetByID(id);
+            var staffs = StaffMapper.ToStaffDTO(_unitOfWork.StaffRepository.GetByID(id));
             if (staffs == null)
             {
                 return NotFound();
@@ -37,8 +39,25 @@ namespace MilkStoreV4.Controllers
         [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var staffs = _unitOfWork.StaffRepository.GetByID(id);
+            var staffs = StaffMapper.ToStaffDTO(_unitOfWork.StaffRepository.GetByID(id));
             _unitOfWork.StaffRepository.Delete(staffs);
+            return NoContent();
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateStaffDTO createStaffDTO)
+        {
+            var staff = StaffMapper.ToStaffFromCreateDTO(createStaffDTO);
+            _unitOfWork.StaffRepository.Insert(staff);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById), new {id = staff.StaffId}, staff);
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateStaffDTO updateStaffDTO)
+        {
+            var staff = StaffMapper.ToStaffFromUpdateDTO(updateStaffDTO);
+            _unitOfWork.StaffRepository.Update(staff);
             return NoContent();
         }
     }

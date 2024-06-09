@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -25,7 +27,7 @@ namespace MilkStoreV4.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id)
         { 
-            var admins = _unitOfWork.AdminRepository.GetByID(id);
+            var admins = AdminMapper.ToAdminDTO(_unitOfWork.AdminRepository.GetByID(id));
             if (admins == null)
             {
                 return NotFound();
@@ -37,10 +39,27 @@ namespace MilkStoreV4.Controllers
         [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id) 
         {
-            var admins = _unitOfWork.AdminRepository.GetByID(id);
+            var admins = AdminMapper.ToAdminDTO(_unitOfWork.AdminRepository.GetByID(id));
             _unitOfWork.AdminRepository.Delete(admins);
             return NoContent();
-        } 
+        }
 
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateAdminDTO createAdminDTO)
+        {
+            var admin = AdminMapper.ToAdminFromCreateDTO(createAdminDTO);
+            _unitOfWork.AdminRepository.Insert(admin);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById), new {id = admin.AdminId}, admin);
+        }
+
+
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateAdminDTO updateAdminDTO)
+        {
+            var admin = AdminMapper.ToAdminFromUpdateDTO(updateAdminDTO);
+            _unitOfWork.AdminRepository.Update(admin);
+            return NoContent();
+        }
     }
 }

@@ -1,0 +1,48 @@
+﻿namespace MilkStoreV4.DTOs
+{
+    public class OrderDTO
+    {
+        public int OrderId { get; set; }
+
+        public int MemberId { get; set; }
+
+        public int VoucherId { get; set; }
+
+        public DateTime DateCreate { get; set; }
+
+        public double Amount { get; set; }
+
+        public string OrderStatus { get; set; } = null!;
+    }
+
+    public class CreateOrderDTO
+    {
+        public int OrderId { get; set; }
+
+        public int MemberId { get; set; }
+
+        public int VoucherId { get; set; }
+
+        public DateTime DateCreate { get; set; }
+
+        public double Amount { get; set; }
+
+        public string OrderStatus { get; set; } = null !;
+    }
+
+    public class UpdateOrderDTO
+    {
+        public int OrderId { get; set; }
+
+        public int MemberId { get; set; }
+
+        public int VoucherId { get; set; }
+
+        public DateTime? DateCreate { get; set; }
+
+        public double Amount { get; set; }
+
+        public string OrderStatus { get; set; } =null!;
+
+    }
+}

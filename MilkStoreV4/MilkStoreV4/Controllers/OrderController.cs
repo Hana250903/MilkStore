@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -24,7 +26,7 @@ namespace MilkStoreV4.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id) 
         {
-            var orders = _unitOfWork.UserRepository.GetByID(id);
+            var orders = OrderMapper.ToOrderDTO(_unitOfWork.OrderRepository.GetByID(id));
             if (orders == null)
             {
                 return NotFound();
@@ -36,8 +38,25 @@ namespace MilkStoreV4.Controllers
         [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var orders = _unitOfWork.OrderRepository.GetByID(id);
+            var orders = OrderMapper.ToOrderDTO(_unitOfWork.OrderRepository.GetByID(id));
             _unitOfWork.OrderRepository.Delete(orders);
+            return NoContent();
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateOrderDTO createOrderDTO)
+        {
+            var order = OrderMapper.ToOrderFromCreateDTO(createOrderDTO);
+            _unitOfWork.OrderRepository.Insert(order);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById),new {id = order.OrderId}, order);
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateOrderDTO updateOrderDTO)
+        {
+            var order = OrderMapper.ToOrderFromUpdateDTO(updateOrderDTO);
+            _unitOfWork.OrderRepository.Update(order);
             return NoContent();
         }
     }

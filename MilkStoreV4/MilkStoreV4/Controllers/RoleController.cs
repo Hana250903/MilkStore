@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -25,13 +27,30 @@ namespace MilkStoreV4.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id) 
         {
-            var roles = _unitOfWork.RoleRepository.GetByID(id);
+            var roles = RoleMapper.ToRoleDTO(_unitOfWork.RoleRepository.GetByID(id));
             if(roles == null)
             {
                 return NotFound();
             }
 
             return Ok(roles);
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateRoleDTO createRoleDTO)
+        {
+            var role = RoleMapper.ToRoleFromCreateDTO(createRoleDTO);
+            _unitOfWork.RoleRepository.Insert(role);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById), new { id = role.RoleId }, role);
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateRoleDTO updateRoleDTO)
+        {
+            var role = RoleMapper.ToRoleFromUpdateDTO(updateRoleDTO);
+            _unitOfWork.RoleRepository.Update(role);
+            return NoContent();
         }
     }
 }

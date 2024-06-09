@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -24,7 +26,7 @@ namespace MilkStoreV4.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            var vouchers = _unitOfWork.VoucherRepository.GetByID(id);
+            var vouchers = VoucherMapper.ToVoucherDTO(_unitOfWork.VoucherRepository.GetByID(id));
             if (vouchers == null)
             {
                 return NotFound();
@@ -36,9 +38,25 @@ namespace MilkStoreV4.Controllers
         [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var vouchers = _unitOfWork.VoucherRepository.GetByID(id);
+            var vouchers = VoucherMapper.ToVoucherDTO(_unitOfWork.VoucherRepository.GetByID(id));
             _unitOfWork.VoucherRepository.Delete(vouchers);
+            return NoContent();
+        }
 
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateVoucherDTO createVoucherDTO)
+        {
+            var voucher = VoucherMapper.ToVoucherFromCreateDTO(createVoucherDTO);
+            _unitOfWork.VoucherRepository.Insert(voucher);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById),new {id = voucher.VoucherId}, voucher);
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateVoucherDTO updateVoucherDTO)
+        { 
+            var voucher = VoucherMapper.ToVoucherFromUpdateDTO(updateVoucherDTO);
+            _unitOfWork.VoucherRepository.Update(voucher);
             return NoContent();
         }
     }

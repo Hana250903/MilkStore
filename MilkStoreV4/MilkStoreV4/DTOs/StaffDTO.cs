@@ -10,7 +10,6 @@
     }
     public class CreateStaffDTO
     {
-        public int StaffId { get; set; }
 
         public int UserId { get; set; }
 
@@ -18,10 +17,6 @@
     }
     public class UpdateStaffDTO
     {
-        public int StaffId { get; set; }
-
-        public int UserId { get; set; }
-
         public string Desciption { get; set; } =null!;
     }
 }

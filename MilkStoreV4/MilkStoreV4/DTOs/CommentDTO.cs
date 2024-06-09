@@ -23,7 +23,7 @@
 
     public class UpdateCommentDTO
     {
-        public DateTime? DateCreate { get; set; }
+        public DateTime DateCreate { get; set; }
         public string Content { get; set; } = null!;
         public string Picture { get; set; } = null!;
         public double Rate { get; set; }

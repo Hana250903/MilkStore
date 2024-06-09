@@ -35,6 +35,8 @@ namespace MilkStoreV4.Mappers
             return new Voucher
             {
                 Title = voucher.Title,
+                StartDate = voucher.StartDate,
+                EndDate = voucher.EndDate,
                 Discount = voucher.Discount,
                 Quantity = voucher.Quantity,
                 Status = voucher.Status,

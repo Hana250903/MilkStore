@@ -17,8 +17,6 @@
 
     public class CreateOrderDTO
     {
-        public int OrderId { get; set; }
-
         public int MemberId { get; set; }
 
         public int VoucherId { get; set; }
@@ -32,13 +30,9 @@
 
     public class UpdateOrderDTO
     {
-        public int OrderId { get; set; }
-
-        public int MemberId { get; set; }
-
         public int VoucherId { get; set; }
 
-        public DateTime? DateCreate { get; set; }
+        public DateTime DateCreate { get; set; }
 
         public double Amount { get; set; }
 

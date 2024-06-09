@@ -24,6 +24,8 @@ namespace MilkStoreV4.Mappers
             CreateMap<CreateCommentDTO, Comment>();
             CreateMap<Voucher,  VoucherDTO>();
             CreateMap<CreateVoucherDTO, Voucher>();
+            CreateMap<Milk, MilkDTO>();
+            CreateMap<MilkDTO, Milk>();
         }
     }
 }

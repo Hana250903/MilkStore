@@ -50,7 +50,7 @@ namespace MilkStoreV4.Controllers
             var member = MemberMapper.ToMemberFromCreateDTO(createMemberDTO);
             _unitOfWork.MemberRepository.Insert(member);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new {id = member.MemberId}, member)
+            return CreatedAtAction(nameof(GetById), new { id = member.MemberId }, member);
         }
 
         [HttpPut]

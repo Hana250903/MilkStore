@@ -40,6 +40,7 @@ namespace MilkStoreV4.Mappers
             {
                 UserName = user.UserName,
                 Phone = user.Phone,
+                DateOfBirth = user.DateOfBirth,
                 Gender = user.Gender,
                 Address = user.Address,
                 ProfilePicture = user.ProfilePicture,

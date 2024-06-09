@@ -32,6 +32,8 @@ namespace MilkStoreV4.Mappers
         {
             return new Order 
             {
+                VoucherId = order.VoucherId,
+                DateCreate = order.DateCreate,
                 Amount = order.Amount,
                 OrderStatus = order.OrderStatus,
             };

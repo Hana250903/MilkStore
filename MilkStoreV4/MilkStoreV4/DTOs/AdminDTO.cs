@@ -12,8 +12,6 @@
 
     public class CreateAdminDTO 
     {
-        public int AdminId { get; set; }
-
         public int UserId { get; set; }
 
         public string Desciption { get; set; } = null!;

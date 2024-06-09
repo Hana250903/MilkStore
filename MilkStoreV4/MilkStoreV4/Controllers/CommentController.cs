@@ -57,10 +57,18 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] UpdateCommentDTO updateCommentDTO)
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdateCommentDTO updateCommentDTO)
         {
-            var comment = CommentMapper.ToCommentFromUpdateDTO(updateCommentDTO);
+            var comment = _unitOfWork.CommentRepository.GetByID(id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+            
+            CommentMapper.ToCommentFromUpdateDTO(updateCommentDTO, comment);
             _unitOfWork.CommentRepository.Update(comment);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

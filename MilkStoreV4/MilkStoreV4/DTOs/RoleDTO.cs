@@ -9,15 +9,11 @@
 
     public class CreateRoleDTO
     {
-        public int RoleId { get; set; }
-
         public string RoleName { get; set; } = null!;
     }
 
     public class UpdateRoleDTO
     {
-        public int RoleId { get; set; }
-
         public string RoleName { get; set; } = null!;
     }
 }

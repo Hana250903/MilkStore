@@ -11,6 +11,7 @@ namespace MilkStoreV4.Mappers
             {
                 CommentId = comment.CommentId,
                 MemberId = comment.MemberId,
+                DateCreate = comment.DateCreate,
                 Content = comment.Content,
                 Picture = comment.Picture,
                 Rate = comment.Rate,
@@ -31,14 +32,12 @@ namespace MilkStoreV4.Mappers
             };
         }
 
-        public static Comment ToCommentFromUpdateDTO (this UpdateCommentDTO comment)
+        public static void ToCommentFromUpdateDTO (this UpdateCommentDTO commentDTO, Comment comment)
         {
-            return new Comment
-            {
-                Content = comment.Content,
-                Picture = comment.Picture,
-                Rate = comment.Rate,
-            };
+            comment.DateCreate = commentDTO.DateCreate;
+            comment.Content = commentDTO.Content;
+            comment.Picture = commentDTO.Picture;
+            comment.Rate = commentDTO.Rate;
         }
     }
 }

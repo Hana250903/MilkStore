@@ -23,8 +23,6 @@
 
     public class CreateUserDTO
     {
-        public int UserId { get; set; }
-
         public string UserName { get; set; } = null!;
 
         public string Phone { get; set; } = null!;
@@ -48,7 +46,7 @@
 
         public string Phone { get; set; } = null!;
 
-        public DateTime? DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         public string Gender { get; set; } = null!;
 
@@ -58,6 +56,6 @@
 
         public string ProfilePicture { get; set; } = null!;
 
-        public DateTime? DateCreate { get; set; }
+        public DateTime DateCreate { get; set; }
     }
 }

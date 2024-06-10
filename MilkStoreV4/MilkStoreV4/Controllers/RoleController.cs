@@ -46,10 +46,15 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] UpdateRoleDTO updateRoleDTO)
+        public IActionResult Update([FromRoute] int id , [FromBody] UpdateRoleDTO updateRoleDTO)
         {
-            var role = RoleMapper.ToRoleFromUpdateDTO(updateRoleDTO);
+            var role = _unitOfWork.RoleRepository.GetByID(id);
+            if (role == null)
+            { return NotFound(); }
+                
+            RoleMapper.ToRoleFromUpdateDTO(updateRoleDTO, role);
             _unitOfWork.RoleRepository.Update(role);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

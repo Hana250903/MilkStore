@@ -53,10 +53,15 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] UpdateOrderDTO updateOrderDTO)
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdateOrderDTO updateOrderDTO)
         {
-            var order = OrderMapper.ToOrderFromUpdateDTO(updateOrderDTO);
+            var order = _unitOfWork.OrderRepository.GetByID(id);
+            if (order == null)
+                { return NotFound(); }
+
+            OrderMapper.ToOrderFromUpdateDTO(updateOrderDTO, order);
             _unitOfWork.OrderRepository.Update(order);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

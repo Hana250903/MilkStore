@@ -34,18 +34,16 @@ namespace MilkStoreV4.Mappers
                 DateCreate = user.DateCreate,
             };
         }
-        public static User ToUserFromUpdateDTO(this UpdateUserDTO user)
+        public static void ToUserFromUpdateDTO(this UpdateUserDTO userDTO, User user)
         {
-            return new User
-            {
-                UserName = user.UserName,
-                Phone = user.Phone,
-                DateOfBirth = user.DateOfBirth,
-                Gender = user.Gender,
-                Address = user.Address,
-                ProfilePicture = user.ProfilePicture,
 
-            };
+            userDTO.UserName = user.UserName;
+            userDTO.Phone = user.Phone;
+            userDTO.DateOfBirth = user.DateOfBirth;
+            userDTO.Gender = user.Gender;
+            userDTO.Address = user.Address;
+            userDTO.ProfilePicture = user.ProfilePicture;
+
         }
     }
 }

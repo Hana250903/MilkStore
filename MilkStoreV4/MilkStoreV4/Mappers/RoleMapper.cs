@@ -23,12 +23,9 @@ namespace MilkStoreV4.Mappers
             }
 
         }
-        public static Role ToRoleFromUpdateDTO(this UpdateRoleDTO role)
+        public static void ToRoleFromUpdateDTO(this UpdateRoleDTO roleDTO, Role role)
         {
-            return new Role
-            {
-                RoleName = role.RoleName,
-            };
+            roleDTO.RoleName = role.RoleName;
         }
     }
 }

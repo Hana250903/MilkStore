@@ -54,10 +54,15 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] UpdateStaffDTO updateStaffDTO)
+        public IActionResult Update([FromRoute] int id , [FromBody] UpdateStaffDTO updateStaffDTO)
         {
-            var staff = StaffMapper.ToStaffFromUpdateDTO(updateStaffDTO);
+            var staff = _unitOfWork.StaffRepository.GetByID(id); 
+                if (staff == null)
+            {  return NotFound(); }    
+                
+            StaffMapper.ToStaffFromUpdateDTO(updateStaffDTO, staff);
             _unitOfWork.StaffRepository.Update(staff);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

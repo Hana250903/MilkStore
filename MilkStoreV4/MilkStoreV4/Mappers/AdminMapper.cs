@@ -22,12 +22,9 @@ namespace MilkStoreV4.Mappers
                 Desciption = admin.Desciption,
             };
         }
-        public static Admin ToAdminFromUpdateDTO(this UpdateAdminDTO admin)
-        {
-            return new Admin
-            {
-                Desciption = admin.Desciption,
-            };
+        public static void ToAdminFromUpdateDTO(this UpdateAdminDTO adminDTO, Admin admin)
+        { 
+                adminDTO.Desciption = admin.Desciption;
         }
     }
 }

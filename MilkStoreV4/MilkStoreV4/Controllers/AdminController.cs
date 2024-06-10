@@ -55,10 +55,17 @@ namespace MilkStoreV4.Controllers
 
 
         [HttpPut]
-        public IActionResult Update([FromBody] UpdateAdminDTO updateAdminDTO)
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdateAdminDTO updateAdminDTO)
         {
-            var admin = AdminMapper.ToAdminFromUpdateDTO(updateAdminDTO);
+            var admin = _unitOfWork.AdminRepository.GetByID(id);
+            if (admin == null)
+            { 
+                return NotFound();  
+            }
+
+            AdminMapper.ToAdminFromUpdateDTO(updateAdminDTO, admin);
             _unitOfWork.AdminRepository.Update(admin);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

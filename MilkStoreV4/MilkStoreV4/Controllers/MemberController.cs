@@ -54,10 +54,17 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] UpdateMemberDTO updateMemberDTO)
+        public IActionResult Update([FromRoute] int id ,[FromBody] UpdateMemberDTO updateMemberDTO)
         {
-            var member = MemberMapper.ToMemberFromUpdateDTO(updateMemberDTO);
+            var member = _unitOfWork.MemberRepository.GetByID(id);
+            if (member == null)
+            { 
+            return NotFound(); 
+            }
+
+            MemberMapper.ToMemberFromUpdateDTO(updateMemberDTO, member);
             _unitOfWork.MemberRepository.Update(member);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

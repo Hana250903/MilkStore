@@ -22,12 +22,9 @@ namespace MilkStoreV4.Mappers
                 Desciption = staff.Desciption,
             };
         }
-        public static Staff ToStaffFromUpdateDTO(this UpdateStaffDTO staff)
+        public static void ToStaffFromUpdateDTO(this UpdateStaffDTO staffDTO, Staff staff)
         {
-            return new Staff
-            {
-                Desciption = staff.Desciption,
-            };
+            staffDTO.Desciption = staff.Desciption;
         }
     }
 }

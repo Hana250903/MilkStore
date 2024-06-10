@@ -53,10 +53,14 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] UpdateVoucherDTO updateVoucherDTO)
-        { 
-            var voucher = VoucherMapper.ToVoucherFromUpdateDTO(updateVoucherDTO);
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdateVoucherDTO updateVoucherDTO)
+        {
+            var voucher = _unitOfWork.VoucherRepository.GetByID(id); 
+                if(voucher == null) 
+                    { return NotFound(); }
+            VoucherMapper.ToVoucherFromUpdateDTO(updateVoucherDTO, voucher);
             _unitOfWork.VoucherRepository.Update(voucher);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

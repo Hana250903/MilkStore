@@ -25,7 +25,7 @@ namespace MilkStoreV4.Mappers
         }
         public static void ToRoleFromUpdateDTO(this UpdateRoleDTO roleDTO, Role role)
         {
-            roleDTO.RoleName = role.RoleName;
+            role.RoleName = roleDTO.RoleName;
         }
     }
 }

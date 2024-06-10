@@ -30,10 +30,10 @@ namespace MilkStoreV4.Mappers
         }
         public static void ToOrderFromUpdateDTO(this UpdateOrderDTO orderDTO, Order order)
         {
-            orderDTO.VoucherId = order.VoucherId;
-            orderDTO.DateCreate = order.DateCreate;
-            orderDTO.Amount = order.Amount;
-            orderDTO.OrderStatus = order.OrderStatus;
+            order.VoucherId = orderDTO.VoucherId;
+            order.DateCreate = orderDTO.DateCreate;
+            order.Amount = orderDTO.Amount;
+            order.OrderStatus = orderDTO.OrderStatus;
 
         }
     }

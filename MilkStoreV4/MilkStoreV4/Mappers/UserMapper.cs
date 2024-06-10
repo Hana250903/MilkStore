@@ -37,12 +37,12 @@ namespace MilkStoreV4.Mappers
         public static void ToUserFromUpdateDTO(this UpdateUserDTO userDTO, User user)
         {
 
-            userDTO.UserName = user.UserName;
-            userDTO.Phone = user.Phone;
-            userDTO.DateOfBirth = user.DateOfBirth;
-            userDTO.Gender = user.Gender;
-            userDTO.Address = user.Address;
-            userDTO.ProfilePicture = user.ProfilePicture;
+            user.UserName = userDTO.UserName;
+            user.Phone = userDTO.Phone;
+            user.DateOfBirth = userDTO.DateOfBirth;
+            user.Gender = userDTO.Gender;
+            user.Address = userDTO.Address;
+            user.ProfilePicture = userDTO.ProfilePicture;
 
         }
     }

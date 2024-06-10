@@ -32,12 +32,12 @@ namespace MilkStoreV4.Mappers
         }
         public static void ToVoucherFromUpdateDTO(this UpdateVoucherDTO voucherDTO, Voucher voucher)
         {
-            voucherDTO.Title = voucher.Title;
-            voucherDTO.StartDate = voucher.StartDate;
-            voucherDTO.EndDate = voucher.EndDate;
-            voucherDTO.Discount = voucher.Discount;
-            voucherDTO.Quantity = voucher.Quantity;
-            voucherDTO.Status = voucher.Status;
+            voucher.Title = voucherDTO.Title;
+            voucher.StartDate = voucherDTO.StartDate;
+            voucher.EndDate = voucherDTO.EndDate;
+            voucher.Discount = voucherDTO.Discount;
+            voucher.Quantity = voucherDTO.Quantity;
+            voucher.Status = voucherDTO.Status;
         }
     }
 }

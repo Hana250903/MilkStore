@@ -53,6 +53,7 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPut]
+        [Route("{id}")]
         public IActionResult Update([FromRoute] int id,[FromBody] UpdateVoucherDTO updateVoucherDTO)
         {
             var voucher = _unitOfWork.VoucherRepository.GetByID(id); 

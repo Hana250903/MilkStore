@@ -54,6 +54,7 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPut]
+        [Route("{id}")]
         public IActionResult Update([FromRoute] int id , [FromBody] UpdateStaffDTO updateStaffDTO)
         {
             var staff = _unitOfWork.StaffRepository.GetByID(id); 

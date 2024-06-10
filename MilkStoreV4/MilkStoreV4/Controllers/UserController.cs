@@ -36,7 +36,7 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:int}")]
+        [Route("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var users = UserMapper.ToUserDTO(_unitOfWork.UserRepository.GetByID(id));
@@ -54,6 +54,7 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPut]
+        [Route("{id}")]
         public IActionResult Update([FromRoute] int id ,[FromBody] UpdateUserDTO updateUserDTO)
         {
             var user = _unitOfWork.UserRepository.GetByID(id);

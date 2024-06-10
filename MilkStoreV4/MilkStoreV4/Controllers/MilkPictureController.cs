@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -36,11 +38,33 @@ namespace MilkStoreV4.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult Delete([FromRoute]int id)
+        public IActionResult Delete([FromRoute] int id)
         {
             var milkPicture = _unitOfWork.MilkPictureRepository.GetByID(id);
             _unitOfWork.MilkPictureRepository.Delete(milkPicture);
+            _unitOfWork.Save();
+            return NoContent();
+        }
 
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateMilkPictureDTO createMilkPictureDTO)
+        {
+            var milkPicture = MilkPictureMapper.ToMilkPictureFromCreateDTO(createMilkPictureDTO);
+            _unitOfWork.MilkPictureRepository.Insert(milkPicture);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById), new { id = milkPicture.MilkId }, milkPicture);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdateMilkPictureDTO updateMilkPictureDTO)
+        {
+            var milkPicture = _unitOfWork.MilkPictureRepository.GetByID(id);
+            if (milkPicture == null) { return NotFound(); }
+
+            MilkPictureMapper.ToMilkPictureFromUpdateDTO(updateMilkPictureDTO, milkPicture);
+            _unitOfWork.MilkPictureRepository.Update(milkPicture);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

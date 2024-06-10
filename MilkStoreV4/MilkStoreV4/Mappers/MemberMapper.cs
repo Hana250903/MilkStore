@@ -22,7 +22,7 @@ namespace MilkStoreV4.Mappers
                 Desciption = member.Desciption,
             };
         }
-        public static void ToMemberFromUpdateDTO(this UpdateMemberDTO memberDTO, Member member
+        public static void ToMemberFromUpdateDTO(this UpdateMemberDTO memberDTO, Member member)
         {
             memberDTO.Desciption = member.Desciption;
         }

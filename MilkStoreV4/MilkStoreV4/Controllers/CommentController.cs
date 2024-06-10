@@ -44,6 +44,7 @@ namespace MilkStoreV4.Controllers
         {
             var comment = CommentMapper.ToCommentDTO(_unitOfWork.CommentRepository.GetByID(id));
             _unitOfWork.CommentRepository.Delete(comment);
+            _unitOfWork.Save();
             return NoContent();
         }
 

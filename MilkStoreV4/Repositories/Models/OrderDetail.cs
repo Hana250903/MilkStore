@@ -17,7 +17,7 @@ public partial class OrderDetail
 
     public double Total { get; set; }
 
-    public virtual Milk Order { get; set; }
+    public virtual Milk Milk { get; set; }
 
-    public virtual Order OrderNavigation { get; set; }
+    public virtual Order Order { get; set; }
 }

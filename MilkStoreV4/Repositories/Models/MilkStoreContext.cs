@@ -178,12 +178,12 @@ public partial class MilkStoreContext : DbContext
 
             entity.ToTable("OrderDetail");
 
-            entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
-                .HasForeignKey(d => d.OrderId)
+            entity.HasOne(d => d.Milk).WithMany(p => p.OrderDetails)
+                .HasForeignKey(d => d.MilkId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Cart_Milk");
+                .HasConstraintName("FK_OrderDetail_Milk");
 
-            entity.HasOne(d => d.OrderNavigation).WithMany(p => p.OrderDetails)
+            entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.OrderId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_OrderDetail_Order");

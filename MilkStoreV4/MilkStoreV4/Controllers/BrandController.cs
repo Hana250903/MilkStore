@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -41,7 +43,32 @@ namespace MilkStoreV4.Controllers
         {
             var brand = _unitOfWork.BrandRepository.GetByID(id);
             _unitOfWork.BrandRepository.Delete(brand);
+            _unitOfWork.Save();
+            return NoContent();
+        }
 
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateBrandDTO brandDTO)
+        {
+            var brand = BrandMapper.ToBrandFromCreateDTO(brandDTO);
+            _unitOfWork.BrandRepository.Insert(brand);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById), new { id = brand.BrandId }, brand);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdateBrandDTO brandDTO)
+        {
+            var brand = _unitOfWork.BrandRepository.GetByID(id);
+            if(brand == null)
+            {
+                return NotFound(); 
+            }
+
+            BrandMapper.ToBrandFromUpdateDTO(brandDTO, brand);
+            _unitOfWork.BrandRepository.Update(brand);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

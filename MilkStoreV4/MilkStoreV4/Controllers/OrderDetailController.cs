@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilkStoreV4.DTOs;
+using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -40,6 +42,29 @@ namespace MilkStoreV4.Controllers
         {
             var orderDetail = _unitOfWork.OrderDetailRepository.GetByID(id);
             _unitOfWork.OrderDetailRepository.Delete(orderDetail);
+            _unitOfWork.Save();
+            return NoContent();
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateOrderDetailDTO orderDetailDTO)
+        {
+            var orderDetail = OrderDetailMapper.ToOrderDetailFromCreate(orderDetailDTO);
+            _unitOfWork.OrderDetailRepository.Insert(orderDetail);
+            _unitOfWork.Save();
+            return CreatedAtAction(nameof(GetById), new { id = orderDetail.OrderDetailId }, orderDetail);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdateOrderDetailDTO orderDetailDTO)
+        {
+            var orderDetail = _unitOfWork.OrderDetailRepository.GetByID(id);
+            if (orderDetail == null) { return NotFound(); }
+
+            OrderDetailMapper.ToOrderDetailFromUpdate(orderDetailDTO, orderDetail);
+            _unitOfWork.OrderDetailRepository.Update(orderDetail);
+            _unitOfWork.Save();
             return NoContent();
         }
     }

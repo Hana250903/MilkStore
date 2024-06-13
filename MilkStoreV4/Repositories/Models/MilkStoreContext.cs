@@ -39,9 +39,6 @@ public partial class MilkStoreContext : DbContext
 
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-=> optionsBuilder.UseSqlServer("server =HANAYUKI\\SQLEXPRESS; database =MilkStore;uid=sa;pwd=12345;TrustServerCertificate=true");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Admin>(entity =>

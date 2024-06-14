@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
@@ -11,9 +12,11 @@ namespace MilkStoreV4.Controllers
     public class MilkPictureController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public MilkPictureController(IUnitOfWork unitOfWork)
+        public MilkPictureController(IUnitOfWork unitOfWork, IMapper mapper)
         {
+            _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
 
@@ -21,14 +24,15 @@ namespace MilkStoreV4.Controllers
         public IActionResult GetAll()
         {
             var milkPictures = _unitOfWork.MilkPictureRepository.Get();
-            return Ok(milkPictures);
+            var milkPictureDTOs = _mapper.Map<IEnumerable<MilkPictureDTO>>(milkPictures);
+            return Ok(milkPictureDTOs);
         }
 
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            var milkPicture = _unitOfWork.MilkPictureRepository.GetByID(id);
+            var milkPicture = MilkPictureMapper.ToMilkPictureDTO(_unitOfWork.MilkPictureRepository.GetByID(id));
             if (milkPicture == null)
             {
                 return NotFound();

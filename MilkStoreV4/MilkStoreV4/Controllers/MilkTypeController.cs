@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
@@ -11,25 +12,27 @@ namespace MilkStoreV4.Controllers
     public class MilkTypeController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public MilkTypeController(IUnitOfWork unitOfWork)
+        public MilkTypeController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
             var milkTypes = _unitOfWork.MilkTypeRepository.Get();
-
-            return Ok(milkTypes);
+            var milkTypeDTOs = _mapper.Map<IEnumerable<MilkTypeDTO>>(milkTypes);
+            return Ok(milkTypeDTOs);
         }
 
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetById([FromRoute]int id)
         {
-            var milkType = _unitOfWork.MilkTypeRepository.GetByID(id);
+            var milkType = MilkTypeMapper.ToMilkTypeDTO(_unitOfWork.MilkTypeRepository.GetByID(id));
             if (milkType == null)
             {
                 return NotFound();

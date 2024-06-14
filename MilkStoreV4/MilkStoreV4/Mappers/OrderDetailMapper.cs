@@ -5,7 +5,7 @@ namespace MilkStoreV4.Mappers
 {
     public static class OrderDetailMapper
     {
-        public static OrderDetailDTO ToOrderDetailDTO(this OrderDetailDTO orderDetailDTO)
+        public static OrderDetailDTO ToOrderDetailDTO(this OrderDetail orderDetailDTO)
         {
             return new OrderDetailDTO
             {

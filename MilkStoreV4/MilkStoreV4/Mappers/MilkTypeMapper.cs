@@ -5,7 +5,7 @@ namespace MilkStoreV4.Mappers
 {
     public static class MilkTypeMapper
     {
-        public static MilkTypeDTO ToMilkTypeDTO(this MilkTypeDTO milkTypeDTO)
+        public static MilkTypeDTO ToMilkTypeDTO(this MilkType milkTypeDTO)
         {
             return new MilkTypeDTO
             {

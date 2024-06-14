@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
@@ -12,18 +13,20 @@ namespace MilkStoreV4.Controllers
     public class CommentController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public CommentController(IUnitOfWork unitOfWork)
+        public CommentController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
             var comments = _unitOfWork.CommentRepository.Get();
-
-            return Ok(comments);
+            var commentDTOs = _mapper.Map<IEnumerable<CommentDTO>>(comments);
+            return Ok(commentDTOs);
         }
 
         [HttpGet]

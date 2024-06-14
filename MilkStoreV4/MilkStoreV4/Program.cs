@@ -23,6 +23,8 @@ namespace MilkStoreV4
                 options.UseSqlServer(builder.Configuration.GetConnectionString("MilkStoreContext"));
             });
 
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
@@ -35,6 +37,8 @@ namespace MilkStoreV4
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseAuthorization();
 

@@ -5,7 +5,7 @@ namespace MilkStoreV4.Mappers
 {
     public static class BrandMapper
     {
-        public static BrandDTO ToBrandDTO (this BrandDTO brandDTO)
+        public static BrandDTO ToBrandDTO (this Brand brandDTO)
         {
             return new BrandDTO
             {

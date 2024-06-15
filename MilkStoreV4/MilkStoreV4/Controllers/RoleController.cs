@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
@@ -11,17 +12,20 @@ namespace MilkStoreV4.Controllers
     public class RoleController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public RoleController(IUnitOfWork unitOfWork)
+        public RoleController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
             var roles = _unitOfWork.RoleRepository.Get();
-            return Ok(roles);
+            var roleDTOs = _mapper.Map<IEnumerable<RoleDTO>>(roles);
+            return Ok(roleDTOs);
         }
 
         [HttpGet("{id:int}")]

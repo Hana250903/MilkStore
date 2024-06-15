@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
@@ -11,16 +12,19 @@ namespace MilkStoreV4.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public OrderController(IUnitOfWork unitOfWork)
+        public OrderController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
         [HttpGet]
         public IActionResult GetAll()
         {
             var orders = _unitOfWork.OrderRepository.Get();
-            return Ok(orders);
+            var orderDTOs = _mapper.Map<IEnumerable<OrderDTO>>(orders);
+            return Ok(orderDTOs);
         }
 
         [HttpGet("{id:int}")]

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
@@ -11,17 +12,20 @@ namespace MilkStoreV4.Controllers
     public class StaffController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public StaffController(IUnitOfWork unitOfWork)
+        public StaffController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAll() 
         {
             var staffs = _unitOfWork.StaffRepository.Get();
-            return Ok(staffs);
+            var staffDTOs = _mapper.Map<IEnumerable<StaffDTO>>(staffs);
+            return Ok(staffDTOs);
         }
 
         [HttpGet("{id:int}")]

@@ -5,7 +5,7 @@ namespace MilkStoreV4.Mappers
 {
     public static class OrderDetailMapper
     {
-        public static OrderDetailDTO ToOrderDetailDTO(this OrderDetail orderDetailDTO)
+        public static OrderDetailDTO ToOrderDetailDTO(this Orderdetail orderDetailDTO)
         {
             return new OrderDetailDTO
             {
@@ -17,9 +17,9 @@ namespace MilkStoreV4.Mappers
             };
         }
 
-        public static OrderDetail ToOrderDetailFromCreate(this CreateOrderDetailDTO orderDetailDTO)
+        public static Orderdetail ToOrderDetailFromCreate(this CreateOrderDetailDTO orderDetailDTO)
         {
-            return new OrderDetail
+            return new Orderdetail
             {
                 OrderId = orderDetailDTO.OrderId,
                 MilkId = orderDetailDTO.MilkId,
@@ -28,7 +28,7 @@ namespace MilkStoreV4.Mappers
             };
         }
 
-        public static void ToOrderDetailFromUpdate(this UpdateOrderDetailDTO orderDetailDTO, OrderDetail orderDetail)
+        public static void ToOrderDetailFromUpdate(this UpdateOrderDetailDTO orderDetailDTO, Orderdetail orderDetail)
         {
             orderDetail.Quantity = orderDetailDTO.Quantity;
             orderDetail.Total = orderDetailDTO.Total;

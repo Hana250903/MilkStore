@@ -5,7 +5,7 @@ namespace MilkStoreV4.Mappers
 {
     public static class MilkPictureMapper
     {
-        public static MilkPictureDTO ToMilkPictureDTO(this MilkPicture milkPictureDTO)
+        public static MilkPictureDTO ToMilkPictureDTO(this Milkpicture milkPictureDTO)
         {
             return new MilkPictureDTO
             {
@@ -15,16 +15,16 @@ namespace MilkStoreV4.Mappers
             };
         }
 
-        public static MilkPicture ToMilkPictureFromCreateDTO(this CreateMilkPictureDTO milkPictureDTO)
+        public static Milkpicture ToMilkPictureFromCreateDTO(this CreateMilkPictureDTO milkPictureDTO)
         {
-            return new MilkPicture
+            return new Milkpicture
             {
                 MilkId = milkPictureDTO.MilkId,
                 Picture = milkPictureDTO.Picture,
             };
         }
 
-        public static void ToMilkPictureFromUpdateDTO(UpdateMilkPictureDTO milkPictureDTO, MilkPicture milkPicture)
+        public static void ToMilkPictureFromUpdateDTO(UpdateMilkPictureDTO milkPictureDTO, Milkpicture milkPicture)
         {
             milkPicture.Picture = milkPictureDTO.Picture;
         }

@@ -11,10 +11,10 @@ namespace Repositories.Repository
 {
     public class GenericRepository<TEntity> where TEntity : class
     {
-        internal MilkStoreContext context;
+        internal MilkstoreContext context;
         internal DbSet<TEntity> dbSet;
 
-        public GenericRepository(MilkStoreContext context)
+        public GenericRepository(MilkstoreContext context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();

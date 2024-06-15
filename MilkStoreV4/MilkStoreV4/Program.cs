@@ -18,10 +18,8 @@ namespace MilkStoreV4
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<MilkStoreContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("MilkStoreContext"));
-            });
+            var connectionString = builder.Configuration.GetConnectionString("MilkStoreContext");
+            builder.Services.AddDbContext<MilkstoreContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

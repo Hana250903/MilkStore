@@ -10,12 +10,12 @@ namespace Repositories.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private MilkStoreContext _context;
+        private MilkstoreContext _context;
         private GenericRepository<Milk> _milk;
-        private GenericRepository<MilkPicture> _milkPicture;
+        private GenericRepository<Milkpicture> _milkPicture;
         private GenericRepository<Brand> _brand;
-        private GenericRepository<MilkType> _milkType;
-        private GenericRepository<OrderDetail> _orderDetail;
+        private GenericRepository<Milktype> _milkType;
+        private GenericRepository<Orderdetail> _orderDetail;
         private GenericRepository<Comment> _comment;
         private GenericRepository<Admin> _admin;
         private GenericRepository<Order> _order;
@@ -25,7 +25,7 @@ namespace Repositories.UnitOfWork
         private GenericRepository<Member> _member;
         private GenericRepository<Voucher> _voucher;
 
-        public UnitOfWork(MilkStoreContext context)
+        public UnitOfWork(MilkstoreContext context)
         {
             _context = context;
         }
@@ -54,25 +54,25 @@ namespace Repositories.UnitOfWork
             }
         }
 
-        public GenericRepository<MilkType> MilkTypeRepository
+        public GenericRepository<Milktype> MilkTypeRepository
         {
             get
             {
                 if (_milkType == null)
                 {
-                    this._milkType = new GenericRepository<MilkType>(_context);
+                    this._milkType = new GenericRepository<Milktype>(_context);
                 }
                 return _milkType;
             }
         }
 
-        public GenericRepository<MilkPicture> MilkPictureRepository
+        public GenericRepository<Milkpicture> MilkPictureRepository
         {
             get
             {
                 if (_milkPicture == null)
                 {
-                    this._milkPicture = new GenericRepository<MilkPicture>(_context);
+                    this._milkPicture = new GenericRepository<Milkpicture>(_context);
                 }
                 return _milkPicture;
             }
@@ -90,13 +90,13 @@ namespace Repositories.UnitOfWork
             }
         }
 
-        public GenericRepository<OrderDetail> OrderDetailRepository
+        public GenericRepository<Orderdetail> OrderDetailRepository
         {
             get
             {
                 if (_orderDetail == null)
                 {
-                    this._orderDetail = new GenericRepository<OrderDetail>(_context);
+                    this._orderDetail = new GenericRepository<Orderdetail>(_context);
                 }
                 return _orderDetail;
             }

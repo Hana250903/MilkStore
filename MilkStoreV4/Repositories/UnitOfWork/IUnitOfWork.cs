@@ -15,10 +15,10 @@ namespace Repositories.UnitOfWork
         Task<UnitOfWork> SaveAsync();
         GenericRepository<Milk> MilkRepository { get; }
         GenericRepository<Brand> BrandRepository { get; }
-        GenericRepository<MilkType> MilkTypeRepository { get; }
-        GenericRepository<MilkPicture> MilkPictureRepository { get; }
+        GenericRepository<Milktype> MilkTypeRepository { get; }
+        GenericRepository<Milkpicture> MilkPictureRepository { get; }
         GenericRepository<Comment> CommentRepository { get; }
-        GenericRepository<OrderDetail> OrderDetailRepository { get; }
+        GenericRepository<Orderdetail> OrderDetailRepository { get; }
         GenericRepository<Admin> AdminRepository { get; }
         GenericRepository<User> UserRepository { get; }
         GenericRepository<Role> RoleRepository { get; }

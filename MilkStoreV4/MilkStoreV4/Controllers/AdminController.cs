@@ -24,7 +24,7 @@ namespace MilkStoreV4.Controllers
         public IActionResult GetAll()
         {
             var admins = _unitOfWork.AdminRepository.Get();
-            var adminDTOs = _mapper.Map<AdminDTO>(admins);
+            var adminDTOs = _mapper.Map<IEnumerable<AdminDTO>>(admins);
             return Ok(admins);
         }
 

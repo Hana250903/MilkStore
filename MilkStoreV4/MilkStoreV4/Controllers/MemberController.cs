@@ -17,7 +17,7 @@ namespace MilkStoreV4.Controllers
         public MemberController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            mapper = _mapper;
+            _mapper = mapper;
         }
 
         [HttpGet]

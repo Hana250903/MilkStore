@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
@@ -11,18 +12,20 @@ namespace MilkStoreV4.Controllers
     public class BrandController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public BrandController(IUnitOfWork unitOfWork)
+        public BrandController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
             var brands = _unitOfWork.BrandRepository.Get();
-
-            return Ok(brands);
+            var brandDTOs = _mapper.Map<IEnumerable<BrandDTO>>(brands);
+            return Ok(brandDTOs);
         }
 
         [HttpGet]

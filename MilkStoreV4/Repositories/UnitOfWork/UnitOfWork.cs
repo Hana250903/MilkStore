@@ -17,13 +17,14 @@ namespace Repositories.UnitOfWork
         private GenericRepository<Milktype> _milkType;
         private GenericRepository<Orderdetail> _orderDetail;
         private GenericRepository<Comment> _comment;
+        private GenericRepository<Commentpicture> _commentPicture;
         private GenericRepository<Admin> _admin;
         private GenericRepository<Order> _order;
         private GenericRepository<User> _user;
         private GenericRepository<Role> _role;
         private GenericRepository<Staff> _staff;
         private GenericRepository<Member> _member;
-        private GenericRepository<Voucher> _voucher;
+        private GenericRepository<Voucher> _voucher; 
 
         public UnitOfWork(MilkstoreContext context)
         {
@@ -87,6 +88,18 @@ namespace Repositories.UnitOfWork
                     this._comment = new GenericRepository<Comment>(_context);
                 }
                 return _comment;
+            }
+        }
+
+        public GenericRepository<Commentpicture> CommentPictureRepository
+        {
+            get
+            {
+                if (_commentPicture == null)
+                {
+                    this._commentPicture = new GenericRepository<Commentpicture>(_context);
+                }
+                return _commentPicture;
             }
         }
 

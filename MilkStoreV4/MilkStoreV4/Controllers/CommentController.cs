@@ -46,6 +46,10 @@ namespace MilkStoreV4.Controllers
         public IActionResult Delete([FromRoute]int id)
         {
             var comment = CommentMapper.ToCommentDTO(_unitOfWork.CommentRepository.GetByID(id));
+            if (comment == null)
+            {
+                return NotFound();
+            }
             _unitOfWork.CommentRepository.Delete(comment);
             _unitOfWork.Save();
             return NoContent();

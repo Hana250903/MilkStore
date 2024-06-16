@@ -21,6 +21,8 @@ public partial class MilkstoreContext : DbContext
 
     public virtual DbSet<Comment> Comments { get; set; }
 
+    public virtual DbSet<Commentpicture> Commentpictures { get; set; }
+
     public virtual DbSet<Member> Members { get; set; }
 
     public virtual DbSet<Milk> Milk { get; set; }
@@ -80,7 +82,6 @@ public partial class MilkstoreContext : DbContext
 
             entity.Property(e => e.Content).HasMaxLength(500);
             entity.Property(e => e.DateCreate).HasColumnType("datetime");
-            entity.Property(e => e.Picture).HasMaxLength(100);
 
             entity.HasOne(d => d.Member).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.MemberId)
@@ -91,6 +92,22 @@ public partial class MilkstoreContext : DbContext
                 .HasForeignKey(d => d.MilkId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Comment_Milk");
+        });
+
+        modelBuilder.Entity<Commentpicture>(entity =>
+        {
+            entity.HasKey(e => e.CommentPictureId).HasName("PRIMARY");
+
+            entity.ToTable("commentpicture");
+
+            entity.HasIndex(e => e.CommentId, "FK_CommentPicture_Comment");
+
+            entity.Property(e => e.Picture).HasMaxLength(100);
+
+            entity.HasOne(d => d.Comment).WithMany(p => p.Commentpictures)
+                .HasForeignKey(d => d.CommentId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_CommentPicture_Comment");
         });
 
         modelBuilder.Entity<Member>(entity =>

@@ -13,11 +13,11 @@ public partial class Comment
 
     public string Content { get; set; } = null!;
 
-    public string Picture { get; set; } = null!;
-
     public double Rate { get; set; }
 
     public int MilkId { get; set; }
+
+    public virtual ICollection<Commentpicture> Commentpictures { get; set; } = new List<Commentpicture>();
 
     public virtual Member Member { get; set; } = null!;
 

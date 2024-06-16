@@ -45,6 +45,10 @@ namespace MilkStoreV4.Controllers
         public IActionResult Delete([FromRoute]int id)
         {
             var orderDetail = _unitOfWork.OrderDetailRepository.GetByID(id);
+            if (orderDetail == null)
+            {
+                return NotFound();
+            }
             _unitOfWork.OrderDetailRepository.Delete(orderDetail);
             _unitOfWork.Save();
             return NoContent();

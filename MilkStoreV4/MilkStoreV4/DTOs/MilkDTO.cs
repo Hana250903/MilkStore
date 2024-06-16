@@ -1,4 +1,6 @@
-﻿namespace MilkStoreV4.DTOs
+﻿using Repositories.Models;
+
+namespace MilkStoreV4.DTOs
 {
     public class MilkDTO
     {
@@ -19,6 +21,8 @@
         public double Price { get; set; }
 
         public double Discount { get; set; }
+
+        public virtual ICollection<Milkpicture> Milkpictures { get; set; } = new List<Milkpicture>();
     }
 
     public class CreateMilkDTO

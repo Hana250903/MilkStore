@@ -13,7 +13,6 @@ namespace MilkStoreV4.Mappers
                 MemberId = comment.MemberId,
                 DateCreate = comment.DateCreate,
                 Content = comment.Content,
-                Picture = comment.Picture,
                 Rate = comment.Rate,
                 MilkId = comment.MilkId,
             };
@@ -26,7 +25,6 @@ namespace MilkStoreV4.Mappers
                 MemberId = comment.MemberId,
                 DateCreate = comment.DateCreate,
                 Content = comment.Content,
-                Picture = comment.Picture,
                 Rate = comment.Rate,
                 MilkId = comment.MilkId,
             };
@@ -36,7 +34,6 @@ namespace MilkStoreV4.Mappers
         {
             comment.DateCreate = commentDTO.DateCreate;
             comment.Content = commentDTO.Content;
-            comment.Picture = commentDTO.Picture;
             comment.Rate = commentDTO.Rate;
         }
     }

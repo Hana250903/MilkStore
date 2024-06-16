@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
+using Repositories.Models;
 using Repositories.UnitOfWork;
+using System.Linq.Expressions;
 
 namespace MilkStoreV4.Controllers
 {
@@ -21,10 +23,28 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(string filter = "", string includeProperties = "", int? pageIndex = null, int? pageSize = null)
         {
-            var milks = _unitOfWork.MilkRepository.Get();
+            // Parse the filter to an expression
+            Expression<Func<Milk, bool>> filterExpression = null;
+            if (!string.IsNullOrEmpty(filter))
+            {
+                // Example: Assuming filter is a simple equality check on a 'Name' property
+                filterExpression = m => m.MilkName.Contains(filter);
+            }
+
+            // Get data from the repository
+            var milks = _unitOfWork.MilkRepository.Get(
+                filter: filterExpression,
+                includeProperties: includeProperties,
+                pageIndex: pageIndex,
+                pageSize: pageSize
+            );
+
+            // Map the data to DTOs
             var milkDTOs = _mapper.Map<IEnumerable<MilkDTO>>(milks);
+
+            // Return the result
             return Ok(milkDTOs);
         }
 

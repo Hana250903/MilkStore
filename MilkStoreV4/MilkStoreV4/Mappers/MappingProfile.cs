@@ -34,6 +34,8 @@ namespace MilkStoreV4.Mappers
             CreateMap<CreateBrandDTO, Brand>();
             CreateMap<Orderdetail, OrderDetailDTO>();
             CreateMap<CreateOrderDetailDTO, Orderdetail>();
+            CreateMap<Commentpicture, CommentPictureDTO>();
+            CreateMap<CreateCommentPictureDTO, Commentpicture>();
         }
     }
 }

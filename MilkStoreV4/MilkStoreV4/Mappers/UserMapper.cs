@@ -12,16 +12,20 @@ namespace MilkStoreV4.Mappers
                 UserId = user.UserId,
                 UserName = user.UserName,
                 Phone = user.Phone,
-                DateOfBirth = user.DateOfBirth,
+                DateOfBirth = user.DateOfBirth.ToString("yyyy-MM-dd"),
                 Gender = user.Gender,
                 Address = user.Address,
                 RoleId = user.RoleId,
                 ProfilePicture = user.ProfilePicture,
-                DateCreate = user.DateCreate,
+                DateCreate = user.DateCreate.ToString("yyyy-MM-dd HH:mm"),
             };
         }
         public static User ToUserFromCreateDTO(this CreateUserDTO user)
         {
+            var utcNow = DateTime.UtcNow;
+            var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            var dateCreateInUtc7 = TimeZoneInfo.ConvertTimeFromUtc(utcNow, timeZoneInfo);
+
             return new User
             {
                 UserName = user.UserName,
@@ -31,7 +35,7 @@ namespace MilkStoreV4.Mappers
                 Address = user.Address,
                 RoleId = user.RoleId,
                 ProfilePicture = user.ProfilePicture,
-                DateCreate = user.DateCreate,
+                DateCreate = dateCreateInUtc7,
             };
         }
         public static void ToUserFromUpdateDTO(this UpdateUserDTO userDTO, User user)

@@ -48,7 +48,7 @@ namespace MilkStoreV4.Controllers
             {
                 return NotFound();
             }
-            _unitOfWork.MemberRepository.Delete(members);
+            _unitOfWork.MemberRepository.Delete(id);
             _unitOfWork.Save();
             return NoContent();
         }

@@ -6,9 +6,9 @@
 
         public string Title { get; set; } = null!;
 
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; } = null!;
 
-        public DateTime EndDate { get; set; }
+        public string EndDate { get; set; } = null!;
 
         public double Discount { get; set; }
 

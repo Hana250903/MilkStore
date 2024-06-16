@@ -11,8 +11,8 @@ namespace MilkStoreV4.Mappers
             {
                 VoucherId = voucher.VoucherId,
                 Title = voucher.Title,
-                StartDate = voucher.StartDate,
-                EndDate = voucher.EndDate,
+                StartDate = voucher.StartDate.ToString("yyyy-MM-dd HH:mm"),
+                EndDate = voucher.EndDate.ToString("yyyy-MM-dd HH:mm"),
                 Discount = voucher.Discount,
                 Quantity = voucher.Quantity,
                 Status = voucher.Status,

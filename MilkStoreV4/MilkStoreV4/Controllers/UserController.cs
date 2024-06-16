@@ -24,7 +24,7 @@ namespace MilkStoreV4.Controllers
         public IActionResult GetAll()
         {
             var users = _unitOfWork.UserRepository.Get();
-            var userDTOs = _mapper.Map<IEnumerable<UserDTO>>(users);
+            var userDTOs = users.Select(user => user.ToUserDTO()).ToList();
             return Ok(userDTOs);
         }
 
@@ -48,7 +48,7 @@ namespace MilkStoreV4.Controllers
             {
                 return NotFound();
             }
-            _unitOfWork.UserRepository.Delete(users);
+            _unitOfWork.UserRepository.Delete(id);
             _unitOfWork.Save();
             return NoContent();
         }

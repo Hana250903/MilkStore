@@ -9,7 +9,7 @@ public partial class Staff
 
     public int UserId { get; set; }
 
-    public string Desciption { get; set; } = null!;
+    public string? Desciption { get; set; }
 
     public virtual User User { get; set; } = null!;
 }

@@ -9,7 +9,7 @@ public partial class Member
 
     public int UserId { get; set; }
 
-    public string Desciption { get; set; } = null!;
+    public string? Desciption { get; set; }
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 

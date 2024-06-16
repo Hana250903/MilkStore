@@ -11,6 +11,7 @@ namespace MilkStoreV4.Mappers
             {
                 BrandId = brandDTO.BrandId,
                 BrandName = brandDTO.BrandName,
+                Picture = brandDTO.Picture,
             };
         }
 
@@ -19,12 +20,14 @@ namespace MilkStoreV4.Mappers
             return new Brand
             {
                 BrandName = brandDTO.BrandName,
+                Picture = brandDTO.Picture,
             };
         }
 
         public static void ToBrandFromUpdateDTO(this UpdateBrandDTO brandDTO, Brand brand)
         {
             brand.BrandName = brandDTO.BrandName;
+            brand.Picture = brandDTO.Picture;
         }
     }
 }

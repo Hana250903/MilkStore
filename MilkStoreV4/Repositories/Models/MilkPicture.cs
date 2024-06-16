@@ -9,7 +9,7 @@ public partial class Milkpicture
 
     public int MilkId { get; set; }
 
-    public string Picture { get; set; } = null!;
+    public string? Picture { get; set; }
 
     public virtual Milk Milk { get; set; } = null!;
 }

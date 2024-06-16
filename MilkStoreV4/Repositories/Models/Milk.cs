@@ -11,13 +11,13 @@ public partial class Milk
 
     public int BrandId { get; set; }
 
-    public int Capacity { get; set; }
+    public int? Capacity { get; set; }
 
     public int MilkTypeId { get; set; }
 
-    public string AppropriateAge { get; set; } = null!;
+    public string? AppropriateAge { get; set; }
 
-    public string StorageInstructions { get; set; } = null!;
+    public string? StorageInstructions { get; set; }
 
     public double Price { get; set; }
 

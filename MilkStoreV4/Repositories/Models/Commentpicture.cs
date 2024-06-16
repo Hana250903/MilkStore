@@ -9,7 +9,7 @@ public partial class Commentpicture
 
     public int CommentId { get; set; }
 
-    public string Picture { get; set; } = null!;
+    public string? Picture { get; set; }
 
     public virtual Comment Comment { get; set; } = null!;
 }

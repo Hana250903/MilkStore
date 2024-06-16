@@ -43,6 +43,10 @@ public partial class MilkstoreContext : DbContext
 
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseMySQL("Host=milkstore.mysql.database.azure.com;Port=3306;Username=milkstore;Password =Hana_250903;Database=milkstore");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Admin>(entity =>
@@ -53,7 +57,7 @@ public partial class MilkstoreContext : DbContext
 
             entity.HasIndex(e => e.UserId, "FK_Admin_User");
 
-            entity.Property(e => e.Desciption).HasMaxLength(10);
+            entity.Property(e => e.Desciption).HasMaxLength(50);
 
             entity.HasOne(d => d.User).WithMany(p => p.Admins)
                 .HasForeignKey(d => d.UserId)
@@ -68,6 +72,7 @@ public partial class MilkstoreContext : DbContext
             entity.ToTable("brand");
 
             entity.Property(e => e.BrandName).HasMaxLength(50);
+            entity.Property(e => e.Picture).HasMaxLength(500);
         });
 
         modelBuilder.Entity<Comment>(entity =>
@@ -102,7 +107,7 @@ public partial class MilkstoreContext : DbContext
 
             entity.HasIndex(e => e.CommentId, "FK_CommentPicture_Comment");
 
-            entity.Property(e => e.Picture).HasMaxLength(100);
+            entity.Property(e => e.Picture).HasMaxLength(500);
 
             entity.HasOne(d => d.Comment).WithMany(p => p.Commentpictures)
                 .HasForeignKey(d => d.CommentId)
@@ -118,7 +123,7 @@ public partial class MilkstoreContext : DbContext
 
             entity.HasIndex(e => e.UserId, "FK_Member_User");
 
-            entity.Property(e => e.Desciption).HasMaxLength(10);
+            entity.Property(e => e.Desciption).HasMaxLength(50);
 
             entity.HasOne(d => d.User).WithMany(p => p.Members)
                 .HasForeignKey(d => d.UserId)
@@ -159,7 +164,7 @@ public partial class MilkstoreContext : DbContext
 
             entity.HasIndex(e => e.MilkId, "FK_MilkPicture_Milk");
 
-            entity.Property(e => e.Picture).HasMaxLength(100);
+            entity.Property(e => e.Picture).HasMaxLength(500);
 
             entity.HasOne(d => d.Milk).WithMany(p => p.Milkpictures)
                 .HasForeignKey(d => d.MilkId)
@@ -238,7 +243,7 @@ public partial class MilkstoreContext : DbContext
 
             entity.HasIndex(e => e.UserId, "FK_Staff_User");
 
-            entity.Property(e => e.Desciption).HasMaxLength(10);
+            entity.Property(e => e.Desciption).HasMaxLength(100);
 
             entity.HasOne(d => d.User).WithMany(p => p.Staff)
                 .HasForeignKey(d => d.UserId)
@@ -259,7 +264,7 @@ public partial class MilkstoreContext : DbContext
             entity.Property(e => e.DateOfBirth).HasColumnType("datetime");
             entity.Property(e => e.Gender).HasMaxLength(10);
             entity.Property(e => e.Phone).HasMaxLength(10);
-            entity.Property(e => e.ProfilePicture).HasMaxLength(100);
+            entity.Property(e => e.ProfilePicture).HasMaxLength(500);
             entity.Property(e => e.UserName).HasMaxLength(20);
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)

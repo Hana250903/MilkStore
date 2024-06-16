@@ -22,7 +22,7 @@ namespace MilkStoreV4.DTOs
 
         public double Discount { get; set; }
 
-        public virtual ICollection<Milkpicture> Milkpictures { get; set; } = new List<Milkpicture>();
+        public virtual ICollection<MilkPictureDTO> MilkPictures { get; set; } = new List<MilkPictureDTO>();
     }
 
     public class CreateMilkDTO

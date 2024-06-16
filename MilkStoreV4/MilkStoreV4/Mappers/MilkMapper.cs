@@ -18,6 +18,7 @@ namespace MilkStoreV4.Mappers
                 StorageInstructions = milk.StorageInstructions,
                 Price = milk.Price,
                 Discount = milk.Discount,
+                MilkPictures = milk.Milkpictures.Select(mp => mp.ToMilkPictureDTO()).ToList(),
             };
         }
 

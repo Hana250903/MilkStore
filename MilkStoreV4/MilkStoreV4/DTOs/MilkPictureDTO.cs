@@ -11,8 +11,6 @@
 
     public class CreateMilkPictureDTO
     {
-        public int MilkId { get; set; }
-
         public string Picture { get; set; } = string.Empty;
     }
 

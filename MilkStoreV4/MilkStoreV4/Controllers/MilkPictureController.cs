@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
+using Repositories.Models;
 using Repositories.UnitOfWork;
+using System.Linq.Expressions;
 
 namespace MilkStoreV4.Controllers
 {
@@ -58,11 +60,22 @@ namespace MilkStoreV4.Controllers
         [Route("{milkId}")]
         public IActionResult Create([FromRoute] int milkId, [FromBody] CreateMilkPictureDTO createMilkPictureDTO)
         {
-            
-            var milkPicture = MilkPictureMapper.ToMilkPictureFromCreateDTO(createMilkPictureDTO);
-            _unitOfWork.MilkPictureRepository.Insert(milkPicture);
-            _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new { id = milkPicture.MilkId }, milkPicture);
+            // Tạo biểu thức lọc để kiểm tra sự tồn tại của milk với milkId
+            Expression<Func<Milk, bool>> filter = m => m.MilkId == milkId;
+
+            // Kiểm tra xem có tồn tại milk với milkId không
+            if (_unitOfWork.MilkRepository.Count(filter) > 0)
+            {
+                var milkPicture = MilkPictureMapper.ToMilkPictureFromCreateDTO(milkId, createMilkPictureDTO);
+                _unitOfWork.MilkPictureRepository.Insert(milkPicture);
+                _unitOfWork.Save();
+                return CreatedAtAction(nameof(GetById), new { id = milkPicture.MilkId }, milkPicture.ToMilkPictureDTO());
+            }
+            else
+            {
+                // Trả về lỗi nếu không tìm thấy milk
+                return NotFound($"No milk found with ID {milkId}");
+            }
         }
 
         [HttpPut]

@@ -6,6 +6,7 @@ using MilkStoreV4.Mappers;
 using Repositories.Models;
 using Repositories.UnitOfWork;
 using System.Linq.Expressions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MilkStoreV4.Controllers
 {
@@ -23,28 +24,37 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll(string filter = "", string includeProperties = "", int? pageIndex = null, int? pageSize = null)
+        public IActionResult GetAll(string filter = "", bool? IsDescending = null, int? pageIndex = null, int? pageSize = null)
         {
-            // Parse the filter to an expression
             Expression<Func<Milk, bool>> filterExpression = null;
             if (!string.IsNullOrEmpty(filter))
             {
-                // Example: Assuming filter is a simple equality check on a 'Name' property
                 filterExpression = m => m.MilkName.Contains(filter);
             }
 
-            // Get data from the repository
+            Func<IQueryable<Milk>, IOrderedQueryable<Milk>> orderBy = null;
+            if (IsDescending.HasValue)
+            {
+                if (IsDescending.Value)
+                {
+                    orderBy = q => q.OrderByDescending(e => e.Price);
+                }
+                else
+                {
+                    orderBy = q => q.OrderBy(e => e.Price);
+                }
+            }
+
             var milks = _unitOfWork.MilkRepository.Get(
                 filter: filterExpression,
-                includeProperties: includeProperties,
+                orderBy: orderBy,
+                includeProperties: "Milkpictures",
                 pageIndex: pageIndex,
                 pageSize: pageSize
             );
 
-            // Map the data to DTOs
-            var milkDTOs = _mapper.Map<IEnumerable<MilkDTO>>(milks);
+            var milkDTOs = milks.Select(m => m.ToMilkDTO()).ToList();
 
-            // Return the result
             return Ok(milkDTOs);
         }
 

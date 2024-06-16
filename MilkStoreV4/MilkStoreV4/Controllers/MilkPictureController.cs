@@ -55,8 +55,10 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateMilkPictureDTO createMilkPictureDTO)
+        [Route("{milkId}")]
+        public IActionResult Create([FromRoute] int milkId, [FromBody] CreateMilkPictureDTO createMilkPictureDTO)
         {
+            
             var milkPicture = MilkPictureMapper.ToMilkPictureFromCreateDTO(createMilkPictureDTO);
             _unitOfWork.MilkPictureRepository.Insert(milkPicture);
             _unitOfWork.Save();

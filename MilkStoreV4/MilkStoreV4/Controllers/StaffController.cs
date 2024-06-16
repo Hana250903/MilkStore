@@ -44,7 +44,12 @@ namespace MilkStoreV4.Controllers
         public IActionResult Delete([FromRoute] int id)
         {
             var staffs = StaffMapper.ToStaffDTO(_unitOfWork.StaffRepository.GetByID(id));
+            if (staffs == null)
+            {
+                return NotFound(); 
+            }
             _unitOfWork.StaffRepository.Delete(staffs);
+            _unitOfWork.Save();
             return NoContent();
         }
 

@@ -7,7 +7,7 @@ using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/comment-pictures")]
     [ApiController]
     public class CommentPictureController : ControllerBase
     {

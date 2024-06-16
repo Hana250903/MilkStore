@@ -43,7 +43,12 @@ namespace MilkStoreV4.Controllers
         public IActionResult Delete([FromRoute] int id)
         {
             var vouchers = VoucherMapper.ToVoucherDTO(_unitOfWork.VoucherRepository.GetByID(id));
+            if (vouchers == null)
+            {
+                return NotFound();
+            }
             _unitOfWork.VoucherRepository.Delete(vouchers);
+            _unitOfWork.Save();
             return NoContent();
         }
 

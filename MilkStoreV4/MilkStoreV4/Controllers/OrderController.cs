@@ -43,7 +43,12 @@ namespace MilkStoreV4.Controllers
         public IActionResult Delete([FromRoute] int id)
         {
             var orders = OrderMapper.ToOrderDTO(_unitOfWork.OrderRepository.GetByID(id));
+            if (orders == null)
+            {
+                return NotFound();
+            }
             _unitOfWork.OrderRepository.Delete(orders);
+            _unitOfWork.Save();
             return NoContent();
         }
 

@@ -44,7 +44,12 @@ namespace MilkStoreV4.Controllers
         public IActionResult Delete([FromRoute] int id) 
         {
             var admins = AdminMapper.ToAdminDTO(_unitOfWork.AdminRepository.GetByID(id));
+            if(admins == null)
+            {
+                return NotFound();
+            }
             _unitOfWork.AdminRepository.Delete(admins);
+            _unitOfWork.Save();
             return NoContent();
         }
 

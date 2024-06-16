@@ -29,10 +29,10 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetById([FromRoute] int id) 
+        public IActionResult GetById([FromRoute] int id)
         {
             var roles = RoleMapper.ToRoleDTO(_unitOfWork.RoleRepository.GetByID(id));
-            if(roles == null)
+            if (roles == null)
             {
                 return NotFound();
             }
@@ -51,14 +51,29 @@ namespace MilkStoreV4.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id , [FromBody] UpdateRoleDTO updateRoleDTO)
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdateRoleDTO updateRoleDTO)
         {
             var role = _unitOfWork.RoleRepository.GetByID(id);
             if (role == null)
             { return NotFound(); }
-                
+
             RoleMapper.ToRoleFromUpdateDTO(updateRoleDTO, role);
             _unitOfWork.RoleRepository.Update(role);
+            _unitOfWork.Save();
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id, [FromBody] UpdateRoleDTO updateRoleDTO)
+        {
+            var roles = RoleMapper.ToRoleDTO(_unitOfWork.RoleRepository.GetByID(id));
+            if (roles == null)
+            { 
+                return NotFound(); 
+            }
+
+            _unitOfWork.AdminRepository.Delete(roles);
             _unitOfWork.Save();
             return NoContent();
         }

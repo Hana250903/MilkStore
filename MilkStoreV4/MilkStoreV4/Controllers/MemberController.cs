@@ -44,7 +44,12 @@ namespace MilkStoreV4.Controllers
         public IActionResult Delete([FromRoute] int id)
         {
             var members = MemberMapper.ToMemberDTO(_unitOfWork.MemberRepository.GetByID(id));
+            if (members == null)
+            {
+                return NotFound();
+            }
             _unitOfWork.MemberRepository.Delete(members);
+            _unitOfWork.Save();
             return NoContent();
         }
 

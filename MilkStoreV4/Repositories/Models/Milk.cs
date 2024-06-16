@@ -11,7 +11,7 @@ public partial class Milk
 
     public int BrandId { get; set; }
 
-    public int? Capacity { get; set; }
+    public string? Capacity { get; set; }
 
     public int MilkTypeId { get; set; }
 

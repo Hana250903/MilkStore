@@ -43,10 +43,6 @@ public partial class MilkstoreContext : DbContext
 
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("Host=milkstore.mysql.database.azure.com;Port=3306;Username=milkstore;Password =Hana_250903;Database=milkstore");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Admin>(entity =>
@@ -142,8 +138,9 @@ public partial class MilkstoreContext : DbContext
             entity.HasIndex(e => e.MilkTypeId, "FK_Milk_MilkType");
 
             entity.Property(e => e.AppropriateAge).HasMaxLength(50);
-            entity.Property(e => e.MilkName).HasMaxLength(50);
-            entity.Property(e => e.StorageInstructions).HasMaxLength(50);
+            entity.Property(e => e.Capacity).HasMaxLength(20);
+            entity.Property(e => e.MilkName).HasMaxLength(150);
+            entity.Property(e => e.StorageInstructions).HasMaxLength(300);
 
             entity.HasOne(d => d.Brand).WithMany(p => p.Milk)
                 .HasForeignKey(d => d.BrandId)

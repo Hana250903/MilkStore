@@ -43,7 +43,7 @@ namespace MilkStoreV4.Controllers
         [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id) 
         {
-            var admins = AdminMapper.ToAdminDTO(_unitOfWork.AdminRepository.GetByID(id));
+            var admins = _unitOfWork.AdminRepository.GetByID(id);
             if(admins == null)
             {
                 return NotFound();
@@ -59,7 +59,7 @@ namespace MilkStoreV4.Controllers
             var admin = AdminMapper.ToAdminFromCreateDTO(createAdminDTO);
             _unitOfWork.AdminRepository.Insert(admin);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new {id = admin.AdminId}, admin);
+            return CreatedAtAction(nameof(GetById), new {id = admin.AdminId}, admin.ToAdminDTO());
         }
 
 

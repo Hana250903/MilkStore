@@ -42,7 +42,7 @@ namespace MilkStoreV4.Controllers
         [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var orders = OrderMapper.ToOrderDTO(_unitOfWork.OrderRepository.GetByID(id));
+            var orders = _unitOfWork.OrderRepository.GetByID(id);
             if (orders == null)
             {
                 return NotFound();
@@ -58,7 +58,7 @@ namespace MilkStoreV4.Controllers
             var order = OrderMapper.ToOrderFromCreateDTO(createOrderDTO);
             _unitOfWork.OrderRepository.Insert(order);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById),new {id = order.OrderId}, order);
+            return CreatedAtAction(nameof(GetById),new {id = order.OrderId}, order.ToOrderDTO());
         }
 
         [HttpPut]

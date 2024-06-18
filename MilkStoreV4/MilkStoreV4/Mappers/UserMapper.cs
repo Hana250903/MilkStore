@@ -1,5 +1,6 @@
 ﻿using MilkStoreV4.DTOs;
 using Repositories.Models;
+using System.Globalization;
 
 namespace MilkStoreV4.Mappers
 {
@@ -30,10 +31,10 @@ namespace MilkStoreV4.Mappers
             {
                 UserName = user.UserName,
                 Phone = user.Phone,
-                DateOfBirth = user.DateOfBirth,
+                DateOfBirth = ParseDate(user.DateOfBirth),
                 Gender = user.Gender,
                 Address = user.Address,
-                RoleId = user.RoleId,
+                RoleId = 3,
                 ProfilePicture = user.ProfilePicture,
                 DateCreate = dateCreateInUtc7,
             };
@@ -43,11 +44,22 @@ namespace MilkStoreV4.Mappers
 
             user.UserName = userDTO.UserName;
             user.Phone = userDTO.Phone;
-            user.DateOfBirth = userDTO.DateOfBirth;
+            user.DateOfBirth = ParseDate(userDTO.DateOfBirth);
             user.Gender = userDTO.Gender;
             user.Address = userDTO.Address;
             user.ProfilePicture = userDTO.ProfilePicture;
 
+        }
+
+        public static DateTime ParseDate(string dateString)
+        {
+            string[] formats = { "yyyy-MM-dd", "yyyy-MM-dd HH:mm" };
+            DateTime date;
+            if (DateTime.TryParseExact(dateString, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                return date;
+            }
+            throw new FormatException($"String '{dateString}' was not recognized as a valid DateTime.");
         }
     }
 }

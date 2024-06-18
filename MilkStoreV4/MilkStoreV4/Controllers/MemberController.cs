@@ -43,7 +43,7 @@ namespace MilkStoreV4.Controllers
         [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var members = MemberMapper.ToMemberDTO(_unitOfWork.MemberRepository.GetByID(id));
+            var members = _unitOfWork.MemberRepository.GetByID(id);
             if (members == null)
             {
                 return NotFound();
@@ -59,7 +59,7 @@ namespace MilkStoreV4.Controllers
             var member = MemberMapper.ToMemberFromCreateDTO(createMemberDTO);
             _unitOfWork.MemberRepository.Insert(member);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new { id = member.MemberId }, member);
+            return CreatedAtAction(nameof(GetById), new { id = member.MemberId }, member.ToMemberDTO());
         }
 
         [HttpPut]

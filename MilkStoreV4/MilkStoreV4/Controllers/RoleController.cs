@@ -46,7 +46,7 @@ namespace MilkStoreV4.Controllers
             var role = RoleMapper.ToRoleFromCreateDTO(createRoleDTO);
             _unitOfWork.RoleRepository.Insert(role);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new { id = role.RoleId }, role);
+            return CreatedAtAction(nameof(GetById), new { id = role.RoleId }, role.ToRoleDTO());
         }
 
         [HttpPut]
@@ -67,7 +67,7 @@ namespace MilkStoreV4.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute] int id, [FromBody] UpdateRoleDTO updateRoleDTO)
         {
-            var roles = RoleMapper.ToRoleDTO(_unitOfWork.RoleRepository.GetByID(id));
+            var roles = _unitOfWork.RoleRepository.GetByID(id);
             if (roles == null)
             { 
                 return NotFound(); 

@@ -43,7 +43,7 @@ namespace MilkStoreV4.Controllers
         [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var staffs = StaffMapper.ToStaffDTO(_unitOfWork.StaffRepository.GetByID(id));
+            var staffs = _unitOfWork.StaffRepository.GetByID(id);
             if (staffs == null)
             {
                 return NotFound(); 
@@ -59,7 +59,7 @@ namespace MilkStoreV4.Controllers
             var staff = StaffMapper.ToStaffFromCreateDTO(createStaffDTO);
             _unitOfWork.StaffRepository.Insert(staff);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new {id = staff.StaffId}, staff);
+            return CreatedAtAction(nameof(GetById), new {id = staff.StaffId}, staff.ToStaffDTO());
         }
 
         [HttpPut]

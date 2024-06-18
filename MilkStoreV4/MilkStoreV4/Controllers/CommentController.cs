@@ -22,10 +22,11 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int? pageIndex = null, int? pageSize = null)
         {
-            var comments = _unitOfWork.CommentRepository.Get();
-            var commentDTOs = _mapper.Map<IEnumerable<CommentDTO>>(comments);
+            var comments = _unitOfWork.CommentRepository.Get(pageIndex: pageIndex,
+                pageSize: pageSize);
+            var commentDTOs = comments.Select(c => c.ToCommentDTO()).ToList();
             return Ok(commentDTOs);
         }
 
@@ -45,7 +46,7 @@ namespace MilkStoreV4.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute]int id)
         {
-            var comment = CommentMapper.ToCommentDTO(_unitOfWork.CommentRepository.GetByID(id));
+            var comment = _unitOfWork.CommentRepository.GetByID(id);
             if (comment == null)
             {
                 return NotFound();
@@ -61,7 +62,7 @@ namespace MilkStoreV4.Controllers
             var comment = CommentMapper.ToCommentFromCreateDTO(createCommentDTO);
             _unitOfWork.CommentRepository.Insert(comment);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new {id = comment.CommentId}, comment);
+            return CreatedAtAction(nameof(GetById), new {id = comment.CommentId}, comment.ToCommentDTO());
         }
 
         [HttpPut]

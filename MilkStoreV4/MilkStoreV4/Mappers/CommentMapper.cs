@@ -11,7 +11,7 @@ namespace MilkStoreV4.Mappers
             {
                 CommentId = comment.CommentId,
                 MemberId = comment.MemberId,
-                DateCreate = comment.DateCreate,
+                DateCreate = comment.DateCreate.ToString("G"),
                 Content = comment.Content,
                 Rate = comment.Rate,
                 MilkId = comment.MilkId,
@@ -23,7 +23,7 @@ namespace MilkStoreV4.Mappers
             return new Comment
             {
                 MemberId = comment.MemberId,
-                DateCreate = comment.DateCreate,
+                DateCreate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time")),
                 Content = comment.Content,
                 Rate = comment.Rate,
                 MilkId = comment.MilkId,
@@ -32,7 +32,6 @@ namespace MilkStoreV4.Mappers
 
         public static void ToCommentFromUpdateDTO (this UpdateCommentDTO commentDTO, Comment comment)
         {
-            comment.DateCreate = commentDTO.DateCreate;
             comment.Content = commentDTO.Content;
             comment.Rate = commentDTO.Rate;
         }

@@ -60,7 +60,7 @@ namespace MilkStoreV4.Controllers
             var brand = BrandMapper.ToBrandFromCreateDTO(brandDTO);
             _unitOfWork.BrandRepository.Insert(brand);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new { id = brand.BrandId }, brand);
+            return CreatedAtAction(nameof(GetById), new { id = brand.BrandId }, brand.ToBrandDTO());
         }
 
         [HttpPut]

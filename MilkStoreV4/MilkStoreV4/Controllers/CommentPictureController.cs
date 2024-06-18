@@ -68,7 +68,7 @@ namespace MilkStoreV4.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var commentPicture = CommentPictureMapper.ToCommentPictureDTO(_unitOfWork.CommentPictureRepository.GetByID(id));
+            var commentPicture = _unitOfWork.CommentPictureRepository.GetByID(id);
             if(commentPicture == null)
             {
                 return NotFound();

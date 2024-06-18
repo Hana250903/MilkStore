@@ -1,284 +1,257 @@
-USE [MilkStore]
-GO
-/****** Object:  Table [dbo].[Admin]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Admin](
-	[AdminId] [int] IDENTITY(1,1) NOT NULL,
-	[UserId] [int] NOT NULL,
-	[Desciption] [nvarchar](10) NOT NULL,
- CONSTRAINT [PK_Admin] PRIMARY KEY CLUSTERED 
+Create database MilkStore;
+USE `MilkStore`
+;
+/****** Object:  Table `Admin`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `Admin`(
+	`AdminId` int AUTO_INCREMENT NOT NULL,
+	`UserId` int NOT NULL,
+	`Desciption` varchar(50) NULL,
+ CONSTRAINT `PK_Admin` PRIMARY KEY 
 (
-	[AdminId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Brand]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Brand](
-	[BrandId] [int] IDENTITY(1,1) NOT NULL,
-	[BrandName] [nvarchar](50) NOT NULL,
- CONSTRAINT [PK_Brand] PRIMARY KEY CLUSTERED 
+	`AdminId` ASC
+)
+)
+;
+/****** Object:  Table `Brand`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `Brand`(
+	`BrandId` int AUTO_INCREMENT NOT NULL,
+	`BrandName` varchar(50) NOT NULL,
+    `Picture` varchar(500) NULL,
+ CONSTRAINT `PK_Brand` PRIMARY KEY 
 (
-	[BrandId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Comment]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Comment](
-	[CommentId] [int] IDENTITY(1,1) NOT NULL,
-	[MemberId] [int] NOT NULL,
-	[DateCreate] [datetime] NOT NULL,
-	[Content] [nvarchar](500) NOT NULL,
-	[Picture] [nvarchar](100) NOT NULL,
-	[Rate] [float] NOT NULL,
-	[MilkId] [int] NOT NULL,
- CONSTRAINT [PK_Comment] PRIMARY KEY CLUSTERED 
+	`BrandId` ASC
+)
+)
+;
+/****** Object:  Table `Comment`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `Comment`(
+	`CommentId` int AUTO_INCREMENT NOT NULL,
+	`MemberId` int NOT NULL,
+	`DateCreate` datetime NOT NULL,
+	`Content` varchar(500) NOT NULL,
+	`Rate` double NOT NULL,
+	`MilkId` int NOT NULL,
+ CONSTRAINT `PK_Comment` PRIMARY KEY 
 (
-	[CommentId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Member]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Member](
-	[MemberId] [int] IDENTITY(1,1) NOT NULL,
-	[UserId] [int] NOT NULL,
-	[Desciption] [nvarchar](10) NOT NULL,
- CONSTRAINT [PK_Member] PRIMARY KEY CLUSTERED 
+	`CommentId` ASC
+)
+)
+;
+/****** Object:  Table `Member`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `Member`(
+	`MemberId` int AUTO_INCREMENT NOT NULL,
+	`UserId` int NOT NULL,
+	`Desciption` varchar(50) NULL,
+ CONSTRAINT `PK_Member` PRIMARY KEY 
 (
-	[MemberId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Milk]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Milk](
-	[MilkId] [int] IDENTITY(1,1) NOT NULL,
-	[MilkName] [nvarchar](50) NOT NULL,
-	[BrandId] [int] NOT NULL,
-	[Capacity] [int] NOT NULL,
-	[MilkTypeId] [int] NOT NULL,
-	[AppropriateAge] [nvarchar](50) NOT NULL,
-	[StorageInstructions] [nvarchar](50) NOT NULL,
-	[Price] [float] NOT NULL,
-	[Discount] [float] NOT NULL,
- CONSTRAINT [PK_Milk] PRIMARY KEY CLUSTERED 
+	`MemberId` ASC
+)
+)
+;
+/****** Object:  Table `Milk`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `Milk`(
+	`MilkId` int AUTO_INCREMENT NOT NULL,
+	`MilkName` varchar(150) NOT NULL,
+	`BrandId` int NOT NULL,
+	`Capacity` varchar(20) NULL,
+	`MilkTypeId` int NOT NULL,
+	`AppropriateAge` varchar(50) NULL,
+	`StorageInstructions` varchar(300) NULL,
+	`Price` double NOT NULL,
+	`Discount` double NOT NULL,
+ CONSTRAINT `PK_Milk` PRIMARY KEY 
 (
-	[MilkId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[MilkPicture]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[MilkPicture](
-	[MilkPictureId] [int] IDENTITY(1,1) NOT NULL,
-	[MilkId] [int] NOT NULL,
-	[Picture] [nvarchar](100) NOT NULL,
- CONSTRAINT [PK_MilkPicture] PRIMARY KEY CLUSTERED 
+	`MilkId` ASC
+)
+)
+;
+/****** Object:  Table `MilkPicture`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `MilkPicture`(
+	`MilkPictureId` int AUTO_INCREMENT NOT NULL,
+	`MilkId` int NOT NULL,
+	`Picture` varchar(500) NULL,
+ CONSTRAINT `PK_MilkPicture` PRIMARY KEY 
 (
-	[MilkPictureId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[MilkType]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[MilkType](
-	[MilkTypeId] [int] IDENTITY(1,1) NOT NULL,
-	[TypeName] [nvarchar](50) NOT NULL,
- CONSTRAINT [PK_MilkType] PRIMARY KEY CLUSTERED 
+	`MilkPictureId` ASC
+)
+)
+;
+
+/*******      *********/
+CREATE TABLE `CommentPicture`(
+	`CommentPictureId` int AUTO_INCREMENT NOT NULL,
+	`CommentId` int NOT NULL,
+	`Picture` varchar(500) NULL,
+ CONSTRAINT `PK_CommentPicture` PRIMARY KEY 
 (
-	[MilkTypeId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Order]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Order](
-	[OrderId] [int] IDENTITY(1,1) NOT NULL,
-	[MemberId] [int] NOT NULL,
-	[VoucherId] [int] NOT NULL,
-	[DateCreate] [datetime] NOT NULL,
-	[Amount] [float] NOT NULL,
-	[OrderStatus] [nvarchar](20) NOT NULL,
- CONSTRAINT [PK_OrderDetail] PRIMARY KEY CLUSTERED 
+	`CommentPictureId` ASC
+)
+)
+;
+/****** Object:  Table `MilkType`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `MilkType`(
+	`MilkTypeId` int AUTO_INCREMENT NOT NULL,
+	`TypeName` varchar(50) NOT NULL,
+ CONSTRAINT `PK_MilkType` PRIMARY KEY 
 (
-	[OrderId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[OrderDetail]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[OrderDetail](
-	[OrderDetailId] [int] IDENTITY(1,1) NOT NULL,
-	[OrderId] [int] NOT NULL,
-	[MilkId] [int] NOT NULL,
-	[Quantity] [int] NOT NULL,
-	[Total] [float] NOT NULL,
- CONSTRAINT [PK_Cart] PRIMARY KEY CLUSTERED 
+	`MilkTypeId` ASC
+)
+)
+;
+/****** Object:  Table `Order`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `Order`(
+	`OrderId` int AUTO_INCREMENT NOT NULL,
+	`MemberId` int NOT NULL,
+	`VoucherId` int NOT NULL,
+	`DateCreate` datetime NOT NULL,
+	`Amount` double NOT NULL,
+	`OrderStatus` varchar(20) NOT NULL,
+ CONSTRAINT `PK_OrderDetail` PRIMARY KEY 
 (
-	[OrderDetailId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Role]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Role](
-	[RoleId] [int] IDENTITY(1,1) NOT NULL,
-	[RoleName] [nvarchar](20) NOT NULL,
- CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED 
+	`OrderId` ASC
+)
+)
+;
+/****** Object:  Table `OrderDetail`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `OrderDetail`(
+	`OrderDetailId` int AUTO_INCREMENT NOT NULL,
+	`OrderId` int NOT NULL,
+	`MilkId` int NOT NULL,
+	`Quantity` int NOT NULL,
+	`Total` double NOT NULL,
+ CONSTRAINT `PK_Cart` PRIMARY KEY 
 (
-	[RoleId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Staff]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Staff](
-	[StaffId] [int] IDENTITY(1,1) NOT NULL,
-	[UserId] [int] NOT NULL,
-	[Desciption] [nvarchar](10) NOT NULL,
- CONSTRAINT [PK_Staff] PRIMARY KEY CLUSTERED 
+	`OrderDetailId` ASC
+)
+)
+;
+/****** Object:  Table `Role`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `Role`(
+	`RoleId` int AUTO_INCREMENT NOT NULL,
+	`RoleName` varchar(20) NOT NULL,
+ CONSTRAINT `PK_Role` PRIMARY KEY 
 (
-	[StaffId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[User]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[User](
-	[UserId] [int] IDENTITY(1,1) NOT NULL,
-	[UserName] [nvarchar](20) NOT NULL,
-	[Phone] [nvarchar](10) NOT NULL,
-	[DateOfBirth] [datetime] NOT NULL,
-	[Gender] [nvarchar](10) NOT NULL,
-	[Address] [nvarchar](100) NOT NULL,
-	[RoleId] [int] NOT NULL,
-	[ProfilePicture] [nvarchar](100) NOT NULL,
-	[DateCreate] [datetime] NOT NULL,
- CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
+	`RoleId` ASC
+)
+)
+;
+/****** Object:  Table `Staff`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `Staff`(
+	`StaffId` int AUTO_INCREMENT NOT NULL,
+	`UserId` int NOT NULL,
+	`Desciption` varchar(100) NULL,
+ CONSTRAINT `PK_Staff` PRIMARY KEY 
 (
-	[UserId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Voucher]    Script Date: 11/06/2024 14:17:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Voucher](
-	[VoucherId] [int] IDENTITY(1,1) NOT NULL,
-	[Title] [nvarchar](50) NOT NULL,
-	[StartDate] [datetime] NOT NULL,
-	[EndDate] [datetime] NOT NULL,
-	[Discount] [float] NOT NULL,
-	[Quantity] [int] NOT NULL,
-	[Status] [nvarchar](20) NOT NULL,
- CONSTRAINT [PK_Voucher] PRIMARY KEY CLUSTERED 
+	`StaffId` ASC
+)
+)
+;
+/****** Object:  Table `User`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `User`(
+	`UserId` int AUTO_INCREMENT NOT NULL,
+	`UserName` varchar(20) NOT NULL,
+	`Phone` varchar(10) NOT NULL,
+	`DateOfBirth` datetime NOT NULL,
+	`Gender` varchar(10) NOT NULL,
+	`Address` varchar(100) NOT NULL,
+	`RoleId` int NOT NULL,
+	`ProfilePicture` varchar(500) NOT NULL,
+	`DateCreate` datetime NOT NULL,
+ CONSTRAINT `PK_User` PRIMARY KEY 
 (
-	[VoucherId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-ALTER TABLE [dbo].[Admin]  WITH CHECK ADD  CONSTRAINT [FK_Admin_User] FOREIGN KEY([UserId])
-REFERENCES [dbo].[User] ([UserId])
-GO
-ALTER TABLE [dbo].[Admin] CHECK CONSTRAINT [FK_Admin_User]
-GO
-ALTER TABLE [dbo].[Comment]  WITH CHECK ADD  CONSTRAINT [FK_Comment_Member] FOREIGN KEY([MemberId])
-REFERENCES [dbo].[Member] ([MemberId])
-GO
-ALTER TABLE [dbo].[Comment] CHECK CONSTRAINT [FK_Comment_Member]
-GO
-ALTER TABLE [dbo].[Comment]  WITH CHECK ADD  CONSTRAINT [FK_Comment_Milk] FOREIGN KEY([MilkId])
-REFERENCES [dbo].[Milk] ([MilkId])
-GO
-ALTER TABLE [dbo].[Comment] CHECK CONSTRAINT [FK_Comment_Milk]
-GO
-ALTER TABLE [dbo].[Member]  WITH CHECK ADD  CONSTRAINT [FK_Member_User] FOREIGN KEY([UserId])
-REFERENCES [dbo].[User] ([UserId])
-GO
-ALTER TABLE [dbo].[Member] CHECK CONSTRAINT [FK_Member_User]
-GO
-ALTER TABLE [dbo].[Milk]  WITH CHECK ADD  CONSTRAINT [FK_Milk_Brand] FOREIGN KEY([BrandId])
-REFERENCES [dbo].[Brand] ([BrandId])
-GO
-ALTER TABLE [dbo].[Milk] CHECK CONSTRAINT [FK_Milk_Brand]
-GO
-ALTER TABLE [dbo].[Milk]  WITH CHECK ADD  CONSTRAINT [FK_Milk_MilkType] FOREIGN KEY([MilkTypeId])
-REFERENCES [dbo].[MilkType] ([MilkTypeId])
-GO
-ALTER TABLE [dbo].[Milk] CHECK CONSTRAINT [FK_Milk_MilkType]
-GO
-ALTER TABLE [dbo].[MilkPicture]  WITH CHECK ADD  CONSTRAINT [FK_MilkPicture_Milk] FOREIGN KEY([MilkId])
-REFERENCES [dbo].[Milk] ([MilkId])
-GO
-ALTER TABLE [dbo].[MilkPicture] CHECK CONSTRAINT [FK_MilkPicture_Milk]
-GO
-ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetail_Member] FOREIGN KEY([MemberId])
-REFERENCES [dbo].[Member] ([MemberId])
-GO
-ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_OrderDetail_Member]
-GO
-ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetail_Voucher] FOREIGN KEY([VoucherId])
-REFERENCES [dbo].[Voucher] ([VoucherId])
-GO
-ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_OrderDetail_Voucher]
-GO
-ALTER TABLE [dbo].[OrderDetail]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetail_Milk] FOREIGN KEY([MilkId])
-REFERENCES [dbo].[Milk] ([MilkId])
-GO
-ALTER TABLE [dbo].[OrderDetail] CHECK CONSTRAINT [FK_OrderDetail_Milk]
-GO
-ALTER TABLE [dbo].[OrderDetail]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetail_Order] FOREIGN KEY([OrderId])
-REFERENCES [dbo].[Order] ([OrderId])
-GO
-ALTER TABLE [dbo].[OrderDetail] CHECK CONSTRAINT [FK_OrderDetail_Order]
-GO
-ALTER TABLE [dbo].[Staff]  WITH CHECK ADD  CONSTRAINT [FK_Staff_User] FOREIGN KEY([UserId])
-REFERENCES [dbo].[User] ([UserId])
-GO
-ALTER TABLE [dbo].[Staff] CHECK CONSTRAINT [FK_Staff_User]
-GO
-ALTER TABLE [dbo].[User]  WITH CHECK ADD  CONSTRAINT [FK_User_Role] FOREIGN KEY([RoleId])
-REFERENCES [dbo].[Role] ([RoleId])
-GO
-ALTER TABLE [dbo].[User] CHECK CONSTRAINT [FK_User_Role]
-GO
+	`UserId` ASC
+)
+)
+;
+/****** Object:  Table `Voucher`    Script Date: 15/06/2024 17:12:31 ******/
+
+
+CREATE TABLE `Voucher`(
+	`VoucherId` int AUTO_INCREMENT NOT NULL,
+	`Title` varchar(50) NOT NULL,
+	`StartDate` datetime NOT NULL,
+	`EndDate` datetime NOT NULL,
+	`Discount` double NOT NULL,
+	`Quantity` int NOT NULL,
+	`Status` varchar(20) NOT NULL,
+ CONSTRAINT `PK_Voucher` PRIMARY KEY 
+(
+	`VoucherId` ASC
+)
+)
+;
+INSERT INTO `Brand` (`BrandName`) VALUES ('TH');
+
+INSERT INTO `Comment` (`MemberId`, `DateCreate`, `Content`, `Rate`, `MilkId`) VALUES (2, '2024-05-09 14:56:18', 'helo', 1, 2);
+
+INSERT INTO `CommentPicture` (`CommentId`, `Picture`) VALUES (3,'String');
+
+INSERT INTO `Member` (`UserId`, `Desciption`) VALUES (2, 'User');
+
+INSERT INTO `Milk` (`MilkName`, `BrandId`, `Capacity`, `MilkTypeId`, `AppropriateAge`, `StorageInstructions`, `Price`, `Discount`) VALUES ('Sua', 1, 120, 1, '12', 'string', 10000, 0.2);
+
+INSERT INTO `MilkPicture` (`MilkId`, `Picture`) VALUES (2, 'hehe');
+
+INSERT INTO `MilkType` (`TypeName`) VALUES ('Sua Chua');
+INSERT INTO `MilkType` (`TypeName`) VALUES ('string');
+
+INSERT INTO `Order` (`MemberId`, `VoucherId`, `DateCreate`, `Amount`, `OrderStatus`) VALUES (2, 1, '2024-06-10 14:29:54', 0, 'string');
+
+INSERT INTO `OrderDetail` (`OrderId`, `MilkId`, `Quantity`, `Total`) VALUES (1, 2, 10, 1000);
+
+INSERT INTO `Role` (`RoleName`) VALUES ('Admin');
+INSERT INTO `Role` (`RoleName`) VALUES ('Staff');
+INSERT INTO `Role` (`RoleName`) VALUES ('Member');
+
+INSERT INTO `User` (`UserName`, `Phone`, `DateOfBirth`, `Gender`, `Address`, `RoleId`, `ProfilePicture`, `DateCreate`) VALUES ('Nhan', '123456', '2003-09-25', 'Nam', 'abc', 3, 'string', '2024-06-05');
+INSERT INTO `User` (`UserName`, `Phone`, `DateOfBirth`, `Gender`, `Address`, `RoleId`, `ProfilePicture`, `DateCreate`) VALUES ('Kha', '123231', '2024-06-10 14:22:14', 'string', 'string', 1, 'string', '2024-06-10 14:22:14');
+
+INSERT INTO `Voucher` (`Title`, `StartDate`, `EndDate`, `Discount`, `Quantity`, `Status`) VALUES ('string', '2024-06-09 14:32:04', '2024-06-09 14:32:04', 0, 1, 'string');
+INSERT INTO `Voucher` (`Title`, `StartDate`, `EndDate`, `Discount`, `Quantity`, `Status`) VALUES ('string', '2024-06-10 14:19:26', '2024-06-10 14:19:26', 0, 0, 'string');
+ALTER TABLE `Admin` ADD CONSTRAINT `FK_Admin_User` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`);
+
+ALTER TABLE `Comment` ADD CONSTRAINT `FK_Comment_Member` FOREIGN KEY (`MemberId`) REFERENCES `Member` (`MemberId`);
+ALTER TABLE `Comment` ADD CONSTRAINT `FK_Comment_Milk` FOREIGN KEY (`MilkId`) REFERENCES `Milk` (`MilkId`);
+
+ALTER TABLE `Member` ADD CONSTRAINT `FK_Member_User` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`);
+
+ALTER TABLE `Milk` ADD CONSTRAINT `FK_Milk_Brand` FOREIGN KEY (`BrandId`) REFERENCES `Brand` (`BrandId`);
+ALTER TABLE `Milk` ADD CONSTRAINT `FK_Milk_MilkType` FOREIGN KEY (`MilkTypeId`) REFERENCES `MilkType` (`MilkTypeId`);
+
+ALTER TABLE `MilkPicture` ADD CONSTRAINT `FK_MilkPicture_Milk` FOREIGN KEY (`MilkId`) REFERENCES `Milk` (`MilkId`);
+
+ALTER TABLE `CommentPicture` ADD CONSTRAINT `FK_CommentPicture_Comment` FOREIGN KEY (`CommentId`) REFERENCES `Comment` (`CommentId`);
+
+ALTER TABLE `Order` ADD CONSTRAINT `FK_Order_Member` FOREIGN KEY (`MemberId`) REFERENCES `Member` (`MemberId`);
+ALTER TABLE `Order` ADD CONSTRAINT `FK_Order_Voucher` FOREIGN KEY (`VoucherId`) REFERENCES `Voucher` (`VoucherId`);
+
+ALTER TABLE `OrderDetail` ADD CONSTRAINT `FK_OrderDetail_Milk` FOREIGN KEY (`MilkId`) REFERENCES `Milk` (`MilkId`);
+ALTER TABLE `OrderDetail` ADD CONSTRAINT `FK_OrderDetail_Order` FOREIGN KEY (`OrderId`) REFERENCES `Order` (`OrderId`);
+
+ALTER TABLE `Staff` ADD CONSTRAINT `FK_Staff_User` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`);
+
+ALTER TABLE `User` ADD CONSTRAINT `FK_User_Role` FOREIGN KEY (`RoleId`) REFERENCES `Role` (`RoleId`);

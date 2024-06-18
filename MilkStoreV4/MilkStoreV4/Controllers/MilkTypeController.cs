@@ -60,7 +60,7 @@ namespace MilkStoreV4.Controllers
             var milkType = MilkTypeMapper.ToMilkTypeFromCreateDTO(milkTypeDTO);
             _unitOfWork.MilkTypeRepository.Insert(milkType);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new { id = milkType.MilkTypeId }, milkType);
+            return CreatedAtAction(nameof(GetById), new { id = milkType.MilkTypeId }, milkType.ToMilkTypeDTO());
         }
 
         [HttpPut]

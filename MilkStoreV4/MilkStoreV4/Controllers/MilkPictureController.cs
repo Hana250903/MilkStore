@@ -60,10 +60,8 @@ namespace MilkStoreV4.Controllers
         [Route("{milkId}")]
         public IActionResult Create([FromRoute] int milkId, [FromBody] CreateMilkPictureDTO createMilkPictureDTO)
         {
-            // Tạo biểu thức lọc để kiểm tra sự tồn tại của milk với milkId
             Expression<Func<Milk, bool>> filter = m => m.MilkId == milkId;
 
-            // Kiểm tra xem có tồn tại milk với milkId không
             if (_unitOfWork.MilkRepository.Count(filter) > 0)
             {
                 var milkPicture = MilkPictureMapper.ToMilkPictureFromCreateDTO(milkId, createMilkPictureDTO);
@@ -73,7 +71,6 @@ namespace MilkStoreV4.Controllers
             }
             else
             {
-                // Trả về lỗi nếu không tìm thấy milk
                 return NotFound($"No milk found with ID {milkId}");
             }
         }

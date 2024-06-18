@@ -60,7 +60,7 @@ namespace MilkStoreV4.Controllers
             var orderDetail = OrderDetailMapper.ToOrderDetailFromCreate(orderDetailDTO);
             _unitOfWork.OrderDetailRepository.Insert(orderDetail);
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetById), new { id = orderDetail.OrderDetailId }, orderDetail);
+            return CreatedAtAction(nameof(GetById), new { id = orderDetail.OrderDetailId }, orderDetail.ToOrderDetailDTO());
         }
 
         [HttpPut]

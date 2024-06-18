@@ -13,30 +13,26 @@ namespace MilkStoreV4.Mappers
                 UserId = user.UserId,
                 UserName = user.UserName,
                 Phone = user.Phone,
-                DateOfBirth = user.DateOfBirth.ToString("yyyy-MM-dd"),
+                DateOfBirth = user.DateOfBirth.ToString("d"),
                 Gender = user.Gender,
                 Address = user.Address,
                 RoleId = user.RoleId,
                 ProfilePicture = user.ProfilePicture,
-                DateCreate = user.DateCreate.ToString("yyyy-MM-dd HH:mm"),
+                DateCreate = user.DateCreate.ToString("G"),
             };
         }
         public static User ToUserFromCreateDTO(this CreateUserDTO user)
         {
-            var utcNow = DateTime.UtcNow;
-            var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
-            var dateCreateInUtc7 = TimeZoneInfo.ConvertTimeFromUtc(utcNow, timeZoneInfo);
-
             return new User
             {
                 UserName = user.UserName,
                 Phone = user.Phone,
-                DateOfBirth = ParseDate(user.DateOfBirth),
+                DateOfBirth = user.DateOfBirth,
                 Gender = user.Gender,
                 Address = user.Address,
                 RoleId = 3,
                 ProfilePicture = user.ProfilePicture,
-                DateCreate = dateCreateInUtc7,
+                DateCreate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time")),
             };
         }
         public static void ToUserFromUpdateDTO(this UpdateUserDTO userDTO, User user)
@@ -44,22 +40,10 @@ namespace MilkStoreV4.Mappers
 
             user.UserName = userDTO.UserName;
             user.Phone = userDTO.Phone;
-            user.DateOfBirth = ParseDate(userDTO.DateOfBirth);
+            user.DateOfBirth = userDTO.DateOfBirth;
             user.Gender = userDTO.Gender;
             user.Address = userDTO.Address;
             user.ProfilePicture = userDTO.ProfilePicture;
-
-        }
-
-        public static DateTime ParseDate(string dateString)
-        {
-            string[] formats = { "yyyy-MM-dd", "yyyy-MM-dd HH:mm" };
-            DateTime date;
-            if (DateTime.TryParseExact(dateString, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-            {
-                return date;
-            }
-            throw new FormatException($"String '{dateString}' was not recognized as a valid DateTime.");
         }
     }
 }

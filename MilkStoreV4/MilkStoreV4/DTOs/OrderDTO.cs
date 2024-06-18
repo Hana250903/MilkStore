@@ -8,11 +8,13 @@
 
         public int VoucherId { get; set; }
 
-        public string DateCreate { get; set; }
+        public string DateCreate { get; set; } = null!;
 
         public double Amount { get; set; }
 
         public string OrderStatus { get; set; } = null!;
+        
+        public virtual ICollection<OrderDetailDTO> OrderDetails { get; set; } = new List<OrderDetailDTO>();
     }
 
     public class CreateOrderDTO

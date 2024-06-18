@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
+using Repositories.Models;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -20,9 +21,27 @@ namespace MilkStoreV4.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(bool? IsDescending = null, int? pageIndex = null, int? pageSize = null)
         {
-            var orders = _unitOfWork.OrderRepository.Get();
+            Func<IQueryable<Order>, IOrderedQueryable<Order>> orderBy = null;
+            if (IsDescending.HasValue)
+            {
+                if (IsDescending.Value)
+                {
+                    orderBy = q => q.OrderByDescending(e => e.OrderId);
+                }
+                else
+                {
+                    orderBy = q => q.OrderBy(e => e.OrderId);
+                }
+            }
+
+            var orders = _unitOfWork.OrderRepository.Get(
+                orderBy: orderBy,
+                includeProperties: "Orderdetails",
+                pageIndex: pageIndex,
+                pageSize: pageSize
+            );
             var orderDTOs = _mapper.Map<IEnumerable<OrderDTO>>(orders);
             return Ok(orderDTOs);
         }

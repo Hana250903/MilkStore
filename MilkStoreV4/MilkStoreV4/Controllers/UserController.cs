@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
+using Repositories.Models;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -21,9 +22,27 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(bool? IsDescending = null, int? pageIndex = null, int? pageSize = null)
         {
-            var users = _unitOfWork.UserRepository.Get();
+            Func<IQueryable<User>, IOrderedQueryable<User>> orderBy = null;
+            if (IsDescending.HasValue)
+            {
+                if (IsDescending.Value)
+                {
+                    orderBy = q => q.OrderByDescending(x => x.UserId);
+                }
+                else
+                {
+                    orderBy = q => q.OrderBy(x => x.UserId);
+                }
+            }
+
+            var users = _unitOfWork.UserRepository.Get(
+                orderBy: orderBy,
+                pageIndex: pageIndex,
+                pageSize: pageSize
+                );
+
             var userDTOs = users.Select(user => user.ToUserDTO()).ToList();
             return Ok(userDTOs);
         }

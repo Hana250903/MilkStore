@@ -28,11 +28,11 @@ namespace MilkStoreV4.Controllers
             {
                 if (IsDescending.Value)
                 {
-                    orderBy = q => q.OrderByDescending(e => e.OrderId);
+                    orderBy = q => q.OrderByDescending(e => e.DateCreate);
                 }
                 else
                 {
-                    orderBy = q => q.OrderBy(e => e.OrderId);
+                    orderBy = q => q.OrderBy(e => e.DateCreate);
                 }
             }
 

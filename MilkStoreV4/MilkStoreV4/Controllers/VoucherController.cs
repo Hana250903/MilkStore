@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
+using Repositories.Models;
 using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
@@ -20,10 +21,13 @@ namespace MilkStoreV4.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public IActionResult GetAll(IUnitOfWork unitOfWork)
+        public IActionResult GetAll(int? pageIndex = null, int? pageSize = null)
         {
-            var vouchers = _unitOfWork.VoucherRepository.Get();
-            var voucherDTOs = _mapper.Map<IEnumerable<VoucherDTO>>(vouchers);
+            var vouchers = _unitOfWork.VoucherRepository.Get(
+                pageIndex: pageIndex,
+                pageSize: pageSize
+                );
+            var voucherDTOs = vouchers.Select(vouchers => vouchers.ToVoucherDTO()).ToList();
             return Ok(voucherDTOs);
         }
 

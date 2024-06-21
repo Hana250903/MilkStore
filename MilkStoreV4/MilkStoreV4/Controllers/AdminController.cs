@@ -7,7 +7,7 @@ using Repositories.UnitOfWork;
 
 namespace MilkStoreV4.Controllers
 {
-    [Route("api/admins")]
+    [Route("api/admin")]
     [ApiController]
     public class AdminController : ControllerBase
     {

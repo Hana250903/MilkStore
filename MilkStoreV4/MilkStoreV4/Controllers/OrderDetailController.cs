@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
+using Repositories.Models;
 using Repositories.UnitOfWork;
+using System.Linq.Expressions;
 
 namespace MilkStoreV4.Controllers
 {
@@ -21,9 +23,15 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int? orderId = null)
         {
-            var orderDetails = _unitOfWork.OrderDetailRepository.Get();
+            Expression<Func<Orderdetail, bool>> filterExpression = null;
+            if (orderId.HasValue)
+            {
+                filterExpression = m => m.OrderId == orderId;
+            }
+
+            var orderDetails = _unitOfWork.OrderDetailRepository.Get(filter: filterExpression);
             var orderDetailDTOs = _mapper.Map<IEnumerable<OrderDetailDTO>>(orderDetails);
             return Ok(orderDetailDTOs);
         }

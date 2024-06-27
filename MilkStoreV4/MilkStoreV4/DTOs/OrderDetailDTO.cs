@@ -21,13 +21,11 @@
 
         public int Quantity { get; set; }
 
-        public double Total { get; set; }
     }
 
     public class UpdateOrderDetailDTO
     {
         public int Quantity { get; set; }
 
-        public double Total { get; set; }
     }
 }

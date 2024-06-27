@@ -57,7 +57,8 @@ namespace MilkStoreV4.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CreateOrderDetailDTO orderDetailDTO)
         {
-            var orderDetail = OrderDetailMapper.ToOrderDetailFromCreate(orderDetailDTO);
+            var milk = _unitOfWork.MilkRepository.GetByID(orderDetailDTO.MilkId);
+            var orderDetail = OrderDetailMapper.ToOrderDetailFromCreate(orderDetailDTO, milk.Price);
             _unitOfWork.OrderDetailRepository.Insert(orderDetail);
             _unitOfWork.Save();
             return CreatedAtAction(nameof(GetById), new { id = orderDetail.OrderDetailId }, orderDetail.ToOrderDetailDTO());
@@ -68,9 +69,10 @@ namespace MilkStoreV4.Controllers
         public IActionResult Update([FromRoute] int id, [FromBody] UpdateOrderDetailDTO orderDetailDTO)
         {
             var orderDetail = _unitOfWork.OrderDetailRepository.GetByID(id);
+            var milk = _unitOfWork.MilkRepository.GetByID(orderDetail.MilkId);
             if (orderDetail == null) { return NotFound(); }
 
-            OrderDetailMapper.ToOrderDetailFromUpdate(orderDetailDTO, orderDetail);
+            OrderDetailMapper.ToOrderDetailFromUpdate(orderDetailDTO, orderDetail, milk.Price);
             _unitOfWork.OrderDetailRepository.Update(orderDetail);
             _unitOfWork.Save();
             return NoContent();

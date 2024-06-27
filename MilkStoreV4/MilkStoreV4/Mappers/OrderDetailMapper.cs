@@ -9,7 +9,7 @@ namespace MilkStoreV4.Mappers
         {
             return new OrderDetailDTO
             {
-                OrderDetailId = orderDetailDTO.OrderId,
+                OrderDetailId = orderDetailDTO.OrderDetailId,
                 OrderId = orderDetailDTO.OrderId,
                 MilkId = orderDetailDTO.MilkId,
                 Quantity = orderDetailDTO.Quantity,
@@ -17,21 +17,21 @@ namespace MilkStoreV4.Mappers
             };
         }
 
-        public static Orderdetail ToOrderDetailFromCreate(this CreateOrderDetailDTO orderDetailDTO)
+        public static Orderdetail ToOrderDetailFromCreate(this CreateOrderDetailDTO orderDetailDTO, double milkPrice)
         {
             return new Orderdetail
             {
                 OrderId = orderDetailDTO.OrderId,
                 MilkId = orderDetailDTO.MilkId,
                 Quantity = orderDetailDTO.Quantity,
-                Total = orderDetailDTO.Total,
+                Total = orderDetailDTO.Quantity * milkPrice,
             };
         }
 
-        public static void ToOrderDetailFromUpdate(this UpdateOrderDetailDTO orderDetailDTO, Orderdetail orderDetail)
+        public static void ToOrderDetailFromUpdate(this UpdateOrderDetailDTO orderDetailDTO, Orderdetail orderDetail, double milkPrice)
         {
             orderDetail.Quantity = orderDetailDTO.Quantity;
-            orderDetail.Total = orderDetailDTO.Total;
+            orderDetail.Total = orderDetailDTO.Quantity * milkPrice;
         }
     }
 }

@@ -22,7 +22,6 @@ namespace MilkStoreV4.Mappers
             return new Order
             {
                 MemberId = order.MemberId,
-                VoucherId = order.VoucherId,
                 DateCreate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time")),
                 Amount = order.Amount,
                 OrderStatus = order.OrderStatus,

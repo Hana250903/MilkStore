@@ -21,8 +21,6 @@
     {
         public int MemberId { get; set; }
 
-        public int? VoucherId { get; set; }
-
         public double Amount { get; set; }
 
         public string OrderStatus { get; set; } = null !;

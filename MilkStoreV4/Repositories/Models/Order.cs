@@ -9,7 +9,7 @@ public partial class Order
 
     public int MemberId { get; set; }
 
-    public int VoucherId { get; set; }
+    public int? VoucherId { get; set; }
 
     public DateTime DateCreate { get; set; }
 
@@ -21,5 +21,5 @@ public partial class Order
 
     public virtual ICollection<Orderdetail> Orderdetails { get; set; } = new List<Orderdetail>();
 
-    public virtual Voucher Voucher { get; set; } = null!;
+    public virtual Voucher? Voucher { get; set; }
 }

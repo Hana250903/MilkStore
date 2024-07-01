@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/MilkStoreV4/Repositories/Models/MilkStoreContext.cs
+/MilkStoreV4/MilkStoreV4/Controllers/MilkController.cs

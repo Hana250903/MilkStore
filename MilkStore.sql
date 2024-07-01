@@ -118,7 +118,7 @@ CREATE TABLE `MilkType`(
 CREATE TABLE `Order`(
 	`OrderId` int AUTO_INCREMENT NOT NULL,
 	`MemberId` int NOT NULL,
-	`VoucherId` int NOT NULL,
+	`VoucherId` int NULL,
 	`DateCreate` datetime NOT NULL,
 	`Amount` double NOT NULL,
 	`OrderStatus` varchar(20) NOT NULL,
@@ -128,12 +128,13 @@ CREATE TABLE `Order`(
 )
 )
 ;
+
 /****** Object:  Table `OrderDetail`    Script Date: 15/06/2024 17:12:31 ******/
 
 
 CREATE TABLE `OrderDetail`(
 	`OrderDetailId` int AUTO_INCREMENT NOT NULL,
-	`OrderId` int NOT NULL,
+	`OrderId` int NULL,
 	`MilkId` int NOT NULL,
 	`Quantity` int NOT NULL,
 	`Total` double NOT NULL,
@@ -255,3 +256,5 @@ ALTER TABLE `OrderDetail` ADD CONSTRAINT `FK_OrderDetail_Order` FOREIGN KEY (`Or
 ALTER TABLE `Staff` ADD CONSTRAINT `FK_Staff_User` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`);
 
 ALTER TABLE `User` ADD CONSTRAINT `FK_User_Role` FOREIGN KEY (`RoleId`) REFERENCES `Role` (`RoleId`);
+
+order

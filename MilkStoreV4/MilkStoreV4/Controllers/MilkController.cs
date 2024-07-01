@@ -6,7 +6,6 @@ using MilkStoreV4.Mappers;
 using Repositories.Models;
 using Repositories.UnitOfWork;
 using System.Linq.Expressions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MilkStoreV4.Controllers
 {

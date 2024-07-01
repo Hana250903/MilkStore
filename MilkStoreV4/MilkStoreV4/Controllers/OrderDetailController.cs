@@ -38,7 +38,7 @@ namespace MilkStoreV4.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetById([FromRoute]int id)
+        public IActionResult GetById([FromRoute] int id)
         {
             var orderDetail = OrderDetailMapper.ToOrderDetailDTO(_unitOfWork.OrderDetailRepository.GetByID(id));
             if (orderDetail == null)
@@ -50,7 +50,7 @@ namespace MilkStoreV4.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult Delete([FromRoute]int id)
+        public IActionResult Delete([FromRoute] int id)
         {
             var orderDetail = _unitOfWork.OrderDetailRepository.GetByID(id);
             if (orderDetail == null)
@@ -59,6 +59,7 @@ namespace MilkStoreV4.Controllers
             }
             _unitOfWork.OrderDetailRepository.Delete(orderDetail);
             _unitOfWork.Save();
+            UpdateOrderAmount(orderDetail.OrderId);
             return NoContent();
         }
 
@@ -69,6 +70,7 @@ namespace MilkStoreV4.Controllers
             var orderDetail = OrderDetailMapper.ToOrderDetailFromCreate(orderDetailDTO, milk.Price);
             _unitOfWork.OrderDetailRepository.Insert(orderDetail);
             _unitOfWork.Save();
+            UpdateOrderAmount(orderDetail.OrderId);
             return CreatedAtAction(nameof(GetById), new { id = orderDetail.OrderDetailId }, orderDetail.ToOrderDetailDTO());
         }
 
@@ -83,7 +85,34 @@ namespace MilkStoreV4.Controllers
             OrderDetailMapper.ToOrderDetailFromUpdate(orderDetailDTO, orderDetail, milk.Price);
             _unitOfWork.OrderDetailRepository.Update(orderDetail);
             _unitOfWork.Save();
+            UpdateOrderAmount(orderDetail.OrderId);
             return NoContent();
+        }
+
+        private void UpdateOrderAmount(int? orderId)
+        {
+            var orderDetails = _unitOfWork.OrderDetailRepository.Get(filter: od => od.OrderId == orderId);
+            var totalAmount = orderDetails.Sum(od => od.Total);
+
+            var order = _unitOfWork.OrderRepository.GetByID((int)orderId);
+            if (order != null)
+            {
+                if (order.VoucherId.HasValue)
+                {
+                    var voucher = _unitOfWork.VoucherRepository.GetByID(order.VoucherId.Value);
+                    if (voucher != null)
+                    {
+                        totalAmount *= (1 - voucher.Discount);
+                    }
+                    order.Amount = totalAmount; 
+                }
+                else
+                {
+                    order.Amount = totalAmount;
+                }
+                _unitOfWork.OrderRepository.Update(order);
+                _unitOfWork.Save();
+            }
         }
     }
 }

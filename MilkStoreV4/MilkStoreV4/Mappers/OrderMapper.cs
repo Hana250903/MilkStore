@@ -23,14 +23,12 @@ namespace MilkStoreV4.Mappers
             {
                 MemberId = order.MemberId,
                 DateCreate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time")),
-                Amount = order.Amount,
-                OrderStatus = order.OrderStatus,
+                OrderStatus = order.OrderStatus
             };
         }
         public static void ToOrderFromUpdateDTO(this UpdateOrderDTO orderDTO, Order order)
         {
             order.VoucherId = orderDTO.VoucherId;
-            order.Amount = orderDTO.Amount;
             order.OrderStatus = orderDTO.OrderStatus;
         }
     }

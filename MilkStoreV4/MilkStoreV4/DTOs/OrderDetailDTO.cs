@@ -4,7 +4,7 @@
     {
         public int OrderDetailId { get; set; }
 
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
 
         public int MilkId { get; set; }
 
@@ -15,7 +15,7 @@
 
     public class CreateOrderDetailDTO
     {
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
 
         public int MilkId { get; set; }
 

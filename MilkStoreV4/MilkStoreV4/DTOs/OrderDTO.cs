@@ -6,7 +6,7 @@
 
         public int MemberId { get; set; }
 
-        public int VoucherId { get; set; }
+        public int? VoucherId { get; set; }
 
         public string DateCreate { get; set; } = null!;
 
@@ -21,7 +21,7 @@
     {
         public int MemberId { get; set; }
 
-        public int VoucherId { get; set; }
+        public int? VoucherId { get; set; }
 
         public double Amount { get; set; }
 
@@ -30,7 +30,7 @@
 
     public class UpdateOrderDTO
     {
-        public int VoucherId { get; set; }
+        public int? VoucherId { get; set; }
 
         public double Amount { get; set; }
 

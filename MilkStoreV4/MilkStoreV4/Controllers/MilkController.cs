@@ -23,12 +23,22 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll(string filter = "", bool? IsDescending = null, int? pageIndex = null, int? pageSize = null)
+        public IActionResult GetAll(string filter = "", bool? IsDescending = null, int? pageIndex = null, int? pageSize = null, int? brandId = null, int? milkType = null)
         {
             Expression<Func<Milk, bool>> filterExpression = null;
             if (!string.IsNullOrEmpty(filter))
             {
                 filterExpression = m => m.MilkName.Contains(filter);
+            }
+
+            if(brandId != null)
+            {
+                filterExpression = m => m.BrandId == brandId;
+            }
+
+            if(milkType != null)
+            {
+                filterExpression = m => m.MilkTypeId == milkType;
             }
 
             Func<IQueryable<Milk>, IOrderedQueryable<Milk>> orderBy = null;
@@ -61,12 +71,14 @@ namespace MilkStoreV4.Controllers
         [Route("{id}")]
         public IActionResult GetById([FromRoute]int id)
         {
-            var milk = MilkMapper.ToMilkDTO(_unitOfWork.MilkRepository.GetByID(id));
+            var milk = _unitOfWork.MilkRepository.GetByID(id);
             if (milk == null)
             {
                 return NotFound();
             }
-            return Ok(milk);
+            milk.Milkpictures = _unitOfWork.MilkPictureRepository.Get().Where(p => p.MilkId == milk.MilkId).ToList();
+            var milkDTO = MilkMapper.ToMilkDTO(milk);
+            return Ok(milkDTO);
         }
 
         [HttpDelete]

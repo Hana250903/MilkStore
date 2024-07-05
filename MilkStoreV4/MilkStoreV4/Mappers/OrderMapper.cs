@@ -15,6 +15,7 @@ namespace MilkStoreV4.Mappers
                 DateCreate = order.DateCreate.ToString("G"),
                 Amount = order.Amount,
                 OrderStatus = order.OrderStatus,
+                OrderDetails = order.Orderdetails.Select(x => x.ToOrderDetailDTO()).ToList(),
             };
         }
         public static Order ToOrderFromCreateDTO(this CreateOrderDTO order)

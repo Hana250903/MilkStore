@@ -49,12 +49,14 @@ namespace MilkStoreV4.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id) 
         {
-            var orders = OrderMapper.ToOrderDTO(_unitOfWork.OrderRepository.GetByID(id));
-            if (orders == null)
+            var order = _unitOfWork.OrderRepository.GetByID(id);
+            if (order == null)
             {
                 return NotFound();
             }
-            return Ok(orders);
+            order.Orderdetails = _unitOfWork.OrderDetailRepository.Get().Where(o => o.OrderId == order.OrderId).ToList();
+            var orderDTO = OrderMapper.ToOrderDTO(order);
+            return Ok(orderDTO);
         }
 
         [HttpDelete]

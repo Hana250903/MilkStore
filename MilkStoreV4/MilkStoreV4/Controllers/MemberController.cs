@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
 using Repositories.UnitOfWork;
+using System.Drawing.Printing;
 
 namespace MilkStoreV4.Controllers
 {
@@ -23,7 +24,7 @@ namespace MilkStoreV4.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var members = _unitOfWork.MemberRepository.Get();
+            var members = _unitOfWork.MemberRepository.Get(includeProperties: "Orders");
             var memberDTOs = _mapper.Map<IEnumerable<MemberDTO>>(members);
             return Ok(memberDTOs);
         }
@@ -31,12 +32,14 @@ namespace MilkStoreV4.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            var members = MemberMapper.ToMemberDTO(_unitOfWork.MemberRepository.GetByID(id));
-            if (members == null)
+            var member = _unitOfWork.MemberRepository.GetByID(id);
+            if (member == null)
             {
                 return NotFound();
             }
-            return Ok(members);
+            member.Orders = _unitOfWork.OrderRepository.Get().Where(m => m.MemberId == member.MemberId).ToList();
+            var memberDTO = MemberMapper.ToMemberDTO(member);
+            return Ok(memberDTO);
         }
 
         [HttpDelete]

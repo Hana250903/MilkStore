@@ -12,6 +12,7 @@ namespace MilkStoreV4.Mappers
                 MemberId = member.MemberId,
                 UserId = member.UserId,
                 Desciption = member.Desciption,
+                Orders = member.Orders.Select(x => x.ToOrderDTO()).ToList(),
             };
         }
         public static Member ToMemberFromCreateDTO (this CreateMemberDTO member)

@@ -258,7 +258,7 @@ public partial class MilkstoreContext : DbContext
             entity.Property(e => e.DateCreate).HasColumnType("datetime");
             entity.Property(e => e.DateOfBirth).HasColumnType("datetime");
             entity.Property(e => e.Gender).HasMaxLength(10);
-            entity.Property(e => e.Phone).HasMaxLength(10);
+            entity.Property(e => e.Phone).HasMaxLength(11);
             entity.Property(e => e.ProfilePicture).HasMaxLength(500);
             entity.Property(e => e.UserName).HasMaxLength(20);
 

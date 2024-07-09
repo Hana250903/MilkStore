@@ -175,7 +175,7 @@ CREATE TABLE `Staff`(
 CREATE TABLE `User`(
 	`UserId` int AUTO_INCREMENT NOT NULL,
 	`UserName` varchar(20) NOT NULL,
-	`Phone` varchar(10) NOT NULL,
+	`Phone` varchar(11) NOT NULL,
 	`DateOfBirth` datetime NOT NULL,
 	`Gender` varchar(10) NOT NULL,
 	`Address` varchar(100) NOT NULL,

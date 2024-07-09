@@ -1,4 +1,6 @@
-﻿namespace MilkStoreV4.DTOs
+﻿using Repositories.Models;
+
+namespace MilkStoreV4.DTOs
 {
     public class CommentDTO
     {
@@ -8,6 +10,7 @@
         public string Content { get; set; } = null!;
         public double Rate { get; set; }
         public int MilkId { get; set; }
+        public virtual ICollection<Commentpicture> Commentpictures { get; set; } = new List<Commentpicture>();
     }
 
     public class CreateCommentDTO

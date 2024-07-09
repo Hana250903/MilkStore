@@ -5,6 +5,7 @@ using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
 using Repositories.Models;
 using Repositories.UnitOfWork;
+using System.Linq.Expressions;
 
 namespace MilkStoreV4.Controllers
 {
@@ -22,9 +23,14 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll(int? pageIndex = null, int? pageSize = null)
+        public IActionResult GetAll(int? pageIndex = null, int? pageSize = null, int? milkId = null)
         {
-            var comments = _unitOfWork.CommentRepository.Get(pageIndex: pageIndex,
+            Expression<Func<Comment, bool>> filterExpression = null;
+            if (milkId.HasValue)
+            {
+                filterExpression = c => c.MilkId == milkId;
+            }
+            var comments = _unitOfWork.CommentRepository.Get(filter: filterExpression ,pageIndex: pageIndex,
                 pageSize: pageSize);
             var commentDTOs = comments.Select(c => c.ToCommentDTO()).ToList();
             return Ok(commentDTOs);

@@ -5,6 +5,7 @@ using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
 using Repositories.Models;
 using Repositories.UnitOfWork;
+using System.Linq.Expressions;
 
 namespace MilkStoreV4.Controllers
 {
@@ -21,8 +22,9 @@ namespace MilkStoreV4.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public IActionResult GetAll(bool? IsDescending = null, int? pageIndex = null, int? pageSize = null)
+        public IActionResult GetAll(bool? IsDescending = null, int? pageIndex = null, int? pageSize = null, int? memberId = null, string? orderStatus = null)
         {
+            Expression<Func<Order, bool>> filterExpression = null;
             Func<IQueryable<Order>, IOrderedQueryable<Order>> orderBy = null;
             if (IsDescending.HasValue)
             {
@@ -36,7 +38,18 @@ namespace MilkStoreV4.Controllers
                 }
             }
 
+            if (memberId.HasValue)
+            {
+                filterExpression = o => o.MemberId == memberId;
+            }
+
+            if (!string.IsNullOrEmpty(orderStatus))
+            {
+                filterExpression = o => o.OrderStatus == orderStatus;
+            }
+
             var orders = _unitOfWork.OrderRepository.Get(
+                filter: filterExpression,
                 orderBy: orderBy,
                 includeProperties: "Orderdetails",
                 pageIndex: pageIndex,

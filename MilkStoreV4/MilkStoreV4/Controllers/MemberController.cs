@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilkStoreV4.DTOs;
 using MilkStoreV4.Mappers;
+using Repositories.Models;
 using Repositories.UnitOfWork;
 using System.Drawing.Printing;
+using System.Linq.Expressions;
 
 namespace MilkStoreV4.Controllers
 {
@@ -22,9 +24,14 @@ namespace MilkStoreV4.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int? userId = null)
         {
-            var members = _unitOfWork.MemberRepository.Get(includeProperties: "Orders");
+            Expression<Func<Member, bool>> filterExpression = null;
+            if (userId != null)
+            {
+                filterExpression = m => m.UserId == userId;
+            }
+            var members = _unitOfWork.MemberRepository.Get(filter: filterExpression, includeProperties: "Orders");
             var memberDTOs = _mapper.Map<IEnumerable<MemberDTO>>(members);
             return Ok(memberDTOs);
         }

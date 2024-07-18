@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilkStoreV4", "MilkStoreV4\MilkStoreV4.csproj", "{33A2EA9D-1A1E-4A71-BA7C-E4D51C458CA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilkStoreV4", "MilkStoreV4\MilkStoreV4.csproj", "{33A2EA9D-1A1E-4A71-BA7C-E4D51C458CA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{B8C80C98-D5F4-4BE7-829E-5402019D1CE4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{EC8B68CA-1D2A-47F2-B0C3-9B093901684A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{B8C80C98-D5F4-4BE7-829E-5402019D1CE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{B8C80C98-D5F4-4BE7-829E-5402019D1CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C80C98-D5F4-4BE7-829E-5402019D1CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C80C98-D5F4-4BE7-829E-5402019D1CE4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC8B68CA-1D2A-47F2-B0C3-9B093901684A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC8B68CA-1D2A-47F2-B0C3-9B093901684A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC8B68CA-1D2A-47F2-B0C3-9B093901684A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC8B68CA-1D2A-47F2-B0C3-9B093901684A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

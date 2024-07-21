@@ -121,13 +121,23 @@ CREATE TABLE `Order`(
 	`VoucherId` int NULL,
 	`DateCreate` datetime NOT NULL,
 	`Amount` double NOT NULL,
-	`OrderStatus` varchar(20) NOT NULL,
- CONSTRAINT `PK_OrderDetail` PRIMARY KEY 
+	`StatusId` int NOT NULL,
+ CONSTRAINT `PK_Order` PRIMARY KEY 
 (
 	`OrderId` ASC
 )
 )
 ;
+
+CREATE TABLE `Status` (
+	`StatusId` int AUTO_INCREMENT NOT NULL,
+	`Status` varchar(50) NOT NULL,
+	constraint `PK_Status` primary key
+    (
+		`StatusId` ASC
+    )
+    )
+    ;
 
 /****** Object:  Table `OrderDetail`    Script Date: 15/06/2024 17:12:31 ******/
 
@@ -138,14 +148,13 @@ CREATE TABLE `OrderDetail`(
 	`MilkId` int NOT NULL,
 	`Quantity` int NOT NULL,
 	`Total` double NOT NULL,
- CONSTRAINT `PK_Cart` PRIMARY KEY 
+ CONSTRAINT `PK_OrderDetail` PRIMARY KEY 
 (
 	`OrderDetailId` ASC
 )
 )
 ;
 /****** Object:  Table `Role`    Script Date: 15/06/2024 17:12:31 ******/
-
 
 CREATE TABLE `Role`(
 	`RoleId` int AUTO_INCREMENT NOT NULL,
@@ -158,7 +167,6 @@ CREATE TABLE `Role`(
 ;
 /****** Object:  Table `Staff`    Script Date: 15/06/2024 17:12:31 ******/
 
-
 CREATE TABLE `Staff`(
 	`StaffId` int AUTO_INCREMENT NOT NULL,
 	`UserId` int NOT NULL,
@@ -170,7 +178,6 @@ CREATE TABLE `Staff`(
 )
 ;
 /****** Object:  Table `User`    Script Date: 15/06/2024 17:12:31 ******/
-
 
 CREATE TABLE `User`(
 	`UserId` int AUTO_INCREMENT NOT NULL,
@@ -190,7 +197,6 @@ CREATE TABLE `User`(
 ;
 /****** Object:  Table `Voucher`    Script Date: 15/06/2024 17:12:31 ******/
 
-
 CREATE TABLE `Voucher`(
 	`VoucherId` int AUTO_INCREMENT NOT NULL,
 	`Title` varchar(50) NOT NULL,
@@ -198,41 +204,28 @@ CREATE TABLE `Voucher`(
 	`EndDate` datetime NOT NULL,
 	`Discount` double NOT NULL,
 	`Quantity` int NOT NULL,
-	`Status` varchar(20) NOT NULL,
+	`VoucherStatusId` int NOT NULL,
  CONSTRAINT `PK_Voucher` PRIMARY KEY 
 (
 	`VoucherId` ASC
 )
 )
 ;
-INSERT INTO `Brand` (`BrandName`) VALUES ('TH');
 
-INSERT INTO `Comment` (`MemberId`, `DateCreate`, `Content`, `Rate`, `MilkId`) VALUES (2, '2024-05-09 14:56:18', 'helo', 1, 2);
-
-INSERT INTO `CommentPicture` (`CommentId`, `Picture`) VALUES (3,'String');
-
-INSERT INTO `Member` (`UserId`, `Desciption`) VALUES (2, 'User');
-
-INSERT INTO `Milk` (`MilkName`, `BrandId`, `Capacity`, `MilkTypeId`, `AppropriateAge`, `StorageInstructions`, `Price`, `Discount`) VALUES ('Sua', 1, 120, 1, '12', 'string', 10000, 0.2);
-
-INSERT INTO `MilkPicture` (`MilkId`, `Picture`) VALUES (2, 'hehe');
-
-INSERT INTO `MilkType` (`TypeName`) VALUES ('Sua Chua');
-INSERT INTO `MilkType` (`TypeName`) VALUES ('string');
-
-INSERT INTO `Order` (`MemberId`, `VoucherId`, `DateCreate`, `Amount`, `OrderStatus`) VALUES (2, 1, '2024-06-10 14:29:54', 0, 'string');
-
-INSERT INTO `OrderDetail` (`OrderId`, `MilkId`, `Quantity`, `Total`) VALUES (1, 2, 10, 1000);
+CREATE TABLE `VoucherStatus` (
+	`VoucherStatusId` int AUTO_INCREMENT NOT NULL,
+	`VoucherStatus` varchar(50) NOT NULL,
+	constraint `PK_VoucherStatus` primary key
+    (
+		`VoucherStatusId` ASC
+    )
+    )
+    ;
 
 INSERT INTO `Role` (`RoleName`) VALUES ('Admin');
 INSERT INTO `Role` (`RoleName`) VALUES ('Staff');
 INSERT INTO `Role` (`RoleName`) VALUES ('Member');
 
-INSERT INTO `User` (`UserName`, `Phone`, `DateOfBirth`, `Gender`, `Address`, `RoleId`, `ProfilePicture`, `DateCreate`) VALUES ('Nhan', '123456', '2003-09-25', 'Nam', 'abc', 3, 'string', '2024-06-05');
-INSERT INTO `User` (`UserName`, `Phone`, `DateOfBirth`, `Gender`, `Address`, `RoleId`, `ProfilePicture`, `DateCreate`) VALUES ('Kha', '123231', '2024-06-10 14:22:14', 'string', 'string', 1, 'string', '2024-06-10 14:22:14');
-
-INSERT INTO `Voucher` (`Title`, `StartDate`, `EndDate`, `Discount`, `Quantity`, `Status`) VALUES ('string', '2024-06-09 14:32:04', '2024-06-09 14:32:04', 0, 1, 'string');
-INSERT INTO `Voucher` (`Title`, `StartDate`, `EndDate`, `Discount`, `Quantity`, `Status`) VALUES ('string', '2024-06-10 14:19:26', '2024-06-10 14:19:26', 0, 0, 'string');
 ALTER TABLE `Admin` ADD CONSTRAINT `FK_Admin_User` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`);
 
 ALTER TABLE `Comment` ADD CONSTRAINT `FK_Comment_Member` FOREIGN KEY (`MemberId`) REFERENCES `Member` (`MemberId`);
@@ -249,6 +242,7 @@ ALTER TABLE `CommentPicture` ADD CONSTRAINT `FK_CommentPicture_Comment` FOREIGN 
 
 ALTER TABLE `Order` ADD CONSTRAINT `FK_Order_Member` FOREIGN KEY (`MemberId`) REFERENCES `Member` (`MemberId`);
 ALTER TABLE `Order` ADD CONSTRAINT `FK_Order_Voucher` FOREIGN KEY (`VoucherId`) REFERENCES `Voucher` (`VoucherId`);
+ALTER TABLE `Order` ADD CONSTRAINT `FK_Order_Status` FOREIGN KEY (`StatusId`) REFERENCES `Status` (`StatusId`);
 
 ALTER TABLE `OrderDetail` ADD CONSTRAINT `FK_OrderDetail_Milk` FOREIGN KEY (`MilkId`) REFERENCES `Milk` (`MilkId`);
 ALTER TABLE `OrderDetail` ADD CONSTRAINT `FK_OrderDetail_Order` FOREIGN KEY (`OrderId`) REFERENCES `Order` (`OrderId`);
@@ -257,4 +251,4 @@ ALTER TABLE `Staff` ADD CONSTRAINT `FK_Staff_User` FOREIGN KEY (`UserId`) REFERE
 
 ALTER TABLE `User` ADD CONSTRAINT `FK_User_Role` FOREIGN KEY (`RoleId`) REFERENCES `Role` (`RoleId`);
 
-order
+ALTER TABLE `Voucher` ADD CONSTRAINT `FK_Voucher_VoucherStatus` FOREIGN KEY (`VoucherStatusId`) REFERENCES `VoucherStatus` (`VoucherStatusId`);

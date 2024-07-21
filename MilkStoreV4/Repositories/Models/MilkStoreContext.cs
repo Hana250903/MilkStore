@@ -39,9 +39,13 @@ public partial class MilkstoreContext : DbContext
 
     public virtual DbSet<Staff> Staff { get; set; }
 
+    public virtual DbSet<Status> Statuses { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<Voucher> Vouchers { get; set; }
+
+    public virtual DbSet<Voucherstatus> Voucherstatuses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -186,15 +190,21 @@ public partial class MilkstoreContext : DbContext
 
             entity.HasIndex(e => e.MemberId, "FK_Order_Member");
 
+            entity.HasIndex(e => e.StatusId, "FK_Order_Status");
+
             entity.HasIndex(e => e.VoucherId, "FK_Order_Voucher");
 
             entity.Property(e => e.DateCreate).HasColumnType("datetime");
-            entity.Property(e => e.OrderStatus).HasMaxLength(20);
 
             entity.HasOne(d => d.Member).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.MemberId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Order_Member");
+
+            entity.HasOne(d => d.Status).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.StatusId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Order_Status");
 
             entity.HasOne(d => d.Voucher).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.VoucherId)
@@ -246,6 +256,17 @@ public partial class MilkstoreContext : DbContext
                 .HasConstraintName("FK_Staff_User");
         });
 
+        modelBuilder.Entity<Status>(entity =>
+        {
+            entity.HasKey(e => e.StatusId).HasName("PRIMARY");
+
+            entity.ToTable("status");
+
+            entity.Property(e => e.Status1)
+                .HasMaxLength(50)
+                .HasColumnName("Status");
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PRIMARY");
@@ -274,10 +295,27 @@ public partial class MilkstoreContext : DbContext
 
             entity.ToTable("voucher");
 
+            entity.HasIndex(e => e.VoucherStatusId, "FK_Voucher_VoucherStatus");
+
             entity.Property(e => e.EndDate).HasColumnType("datetime");
             entity.Property(e => e.StartDate).HasColumnType("datetime");
-            entity.Property(e => e.Status).HasMaxLength(20);
             entity.Property(e => e.Title).HasMaxLength(50);
+
+            entity.HasOne(d => d.VoucherStatus).WithMany(p => p.Vouchers)
+                .HasForeignKey(d => d.VoucherStatusId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Voucher_VoucherStatus");
+        });
+
+        modelBuilder.Entity<Voucherstatus>(entity =>
+        {
+            entity.HasKey(e => e.VoucherStatusId).HasName("PRIMARY");
+
+            entity.ToTable("voucherstatus");
+
+            entity.Property(e => e.VoucherStatus1)
+                .HasMaxLength(50)
+                .HasColumnName("VoucherStatus");
         });
 
         OnModelCreatingPartial(modelBuilder);

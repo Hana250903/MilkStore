@@ -14,7 +14,7 @@
 
         public int Quantity { get; set; }
 
-        public string Status { get; set; } =null!;
+        public int VoucherStatusId { get; set; }
     }
     public class CreateVoucherDTO
     {
@@ -28,7 +28,7 @@
 
         public int Quantity { get; set; }
 
-        public string Status { get; set; } = null !;
+        public int VoucherStatusId { get; set; }
     }
     public class UpdateVoucherDTO
     {
@@ -42,6 +42,6 @@
 
         public int Quantity { get; set; }
 
-        public string Status { get; set; } = null!;
+        public int VoucherStatusId { get; set; }
     }
 }

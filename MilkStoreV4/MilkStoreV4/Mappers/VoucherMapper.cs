@@ -17,7 +17,7 @@ namespace MilkStoreV4.Mappers
                 EndDate = voucher.EndDate.ToString("G"),
                 Discount = voucher.Discount,
                 Quantity = voucher.Quantity,
-                Status = voucher.Status,
+                VoucherStatusId = voucher.VoucherStatusId,
             };
         }
         public static Voucher ToVoucherFromCreateDTO(this CreateVoucherDTO voucher)
@@ -33,7 +33,7 @@ namespace MilkStoreV4.Mappers
                 EndDate = voucher.EndDate,
                 Discount = voucher.Discount,
                 Quantity = voucher.Quantity,
-                Status = voucher.Status,
+                VoucherStatusId = voucher.VoucherStatusId,
             };
         }
         public static void ToVoucherFromUpdateDTO(this UpdateVoucherDTO voucherDTO, Voucher voucher)
@@ -48,7 +48,7 @@ namespace MilkStoreV4.Mappers
             voucher.EndDate = voucherDTO.EndDate;
             voucher.Discount = voucherDTO.Discount;
             voucher.Quantity = voucherDTO.Quantity;
-            voucher.Status = voucherDTO.Status;
+            voucher.VoucherStatusId = voucherDTO.VoucherStatusId;
         }
     }
 }

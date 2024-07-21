@@ -23,8 +23,10 @@ namespace Repositories.UnitOfWork
         private GenericRepository<User> _user;
         private GenericRepository<Role> _role;
         private GenericRepository<Staff> _staff;
+        private GenericRepository<Status> _status;
         private GenericRepository<Member> _member;
         private GenericRepository<Voucher> _voucher; 
+        private GenericRepository<Voucherstatus> _voucherStatus;
 
         public UnitOfWork(MilkstoreContext context)
         {
@@ -163,6 +165,18 @@ namespace Repositories.UnitOfWork
             }
         }
 
+        public GenericRepository<Status> StatusRepository
+        {
+            get
+            {
+                if (_status == null)
+                {
+                    this._status = new GenericRepository<Status>(_context);
+                }
+                return _status;
+            }
+        }
+
         public GenericRepository<Member> MemberRepository
         {
             get
@@ -199,6 +213,17 @@ namespace Repositories.UnitOfWork
             }
         }
 
+        public GenericRepository<Voucherstatus> VoucherStatusRepository
+        {
+            get
+            {
+                if(_voucherStatus == null)
+                {
+                    this._voucherStatus = new GenericRepository<Voucherstatus>(_context);
+                }
+                return _voucherStatus;
+            }
+        }
 
         public void Save()
         {

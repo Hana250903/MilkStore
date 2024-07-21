@@ -15,11 +15,13 @@ public partial class Order
 
     public double Amount { get; set; }
 
-    public string OrderStatus { get; set; } = null!;
+    public int StatusId { get; set; }
 
     public virtual Member Member { get; set; } = null!;
 
     public virtual ICollection<Orderdetail> Orderdetails { get; set; } = new List<Orderdetail>();
+
+    public virtual Status Status { get; set; } = null!;
 
     public virtual Voucher? Voucher { get; set; }
 }

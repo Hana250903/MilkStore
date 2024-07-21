@@ -14,7 +14,7 @@ namespace MilkStoreV4.Mappers
                 VoucherId = order.VoucherId,
                 DateCreate = order.DateCreate.ToString("G"),
                 Amount = order.Amount,
-                OrderStatus = order.OrderStatus,
+                StatusId = order.StatusId,
                 OrderDetails = order.Orderdetails.Select(x => x.ToOrderDetailDTO()).ToList(),
             };
         }
@@ -25,13 +25,13 @@ namespace MilkStoreV4.Mappers
                 MemberId = order.MemberId,
                 VoucherId = order.VoucherId,
                 DateCreate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time")),
-                OrderStatus = order.OrderStatus
+                StatusId = order.StatusId
             };
         }
         public static void ToOrderFromUpdateDTO(this UpdateOrderDTO orderDTO, Order order)
         {
             order.VoucherId = orderDTO.VoucherId;
-            order.OrderStatus = orderDTO.OrderStatus;
+            order.StatusId = orderDTO.StatusId;
         }
     }
 }

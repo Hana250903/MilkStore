@@ -22,7 +22,7 @@ namespace MilkStoreV4.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public IActionResult GetAll(bool? IsDescending = null, int? pageIndex = null, int? pageSize = null, int? memberId = null, string? orderStatus = null)
+        public IActionResult GetAll(bool? IsDescending = null, int? pageIndex = null, int? pageSize = null, int? memberId = null, int? orderStatus = null)
         {
             Expression<Func<Order, bool>> filterExpression = null;
             Func<IQueryable<Order>, IOrderedQueryable<Order>> orderBy = null;
@@ -43,9 +43,9 @@ namespace MilkStoreV4.Controllers
                 filterExpression = o => o.MemberId == memberId;
             }
 
-            if (!string.IsNullOrEmpty(orderStatus))
+            if (orderStatus.HasValue)
             {
-                filterExpression = o => o.OrderStatus == orderStatus;
+                filterExpression = o => o.StatusId == orderStatus;
             }
 
             var orders = _unitOfWork.OrderRepository.Get(

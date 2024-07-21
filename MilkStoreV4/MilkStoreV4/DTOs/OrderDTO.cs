@@ -12,8 +12,8 @@
 
         public double Amount { get; set; }
 
-        public string OrderStatus { get; set; } = null!;
-        
+        public int StatusId { get; set; }
+
         public virtual ICollection<OrderDetailDTO> OrderDetails { get; set; } = new List<OrderDetailDTO>();
     }
 
@@ -21,13 +21,13 @@
     {
         public int MemberId { get; set; }
         public int? VoucherId { get; set; }
-        public string OrderStatus { get; set; } = null !;
+        public int StatusId { get; set; }
     }
 
     public class UpdateOrderDTO
     {
         public int? VoucherId { get; set; }
-        public string OrderStatus { get; set; } =null!;
+        public int StatusId { get; set; }
 
     }
 }

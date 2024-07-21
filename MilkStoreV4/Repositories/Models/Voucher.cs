@@ -17,7 +17,9 @@ public partial class Voucher
 
     public int Quantity { get; set; }
 
-    public string Status { get; set; } = null!;
+    public int VoucherStatusId { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+    public virtual Voucherstatus VoucherStatus { get; set; } = null!;
 }

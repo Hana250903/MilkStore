@@ -104,11 +104,11 @@ namespace MilkStoreV4.Controllers
                     {
                         totalAmount *= (1 - voucher.Discount);
                     }
-                    order.Amount = totalAmount; 
+                    order.Amount = Math.Round(totalAmount, 2);
                 }
                 else
                 {
-                    order.Amount = totalAmount;
+                    order.Amount = Math.Round(totalAmount, 2);
                 }
                 _unitOfWork.OrderRepository.Update(order);
                 _unitOfWork.Save();

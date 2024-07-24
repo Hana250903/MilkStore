@@ -13,6 +13,10 @@ D:\SWP\Project\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.pdb
 D:\SWP\Project\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.genruntimeconfig.cache
 D:\SWP\Project\MilkStoreV4\Repositories\obj\Debug\net8.0\ref\Repositories.dll
 D:\SWP\Project\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.sourcelink.json
+D:\MilkStore\MilkStoreV4\Repositories\bin\Debug\net8.0\Repositories.deps.json
+D:\MilkStore\MilkStoreV4\Repositories\bin\Debug\net8.0\Repositories.runtimeconfig.json
+D:\MilkStore\MilkStoreV4\Repositories\bin\Debug\net8.0\Repositories.dll
+D:\MilkStore\MilkStoreV4\Repositories\bin\Debug\net8.0\Repositories.pdb
 D:\MilkStore\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.csproj.AssemblyReference.cache
 D:\MilkStore\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.GeneratedMSBuildEditorConfig.editorconfig
 D:\MilkStore\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfoInputs.cache
@@ -22,9 +26,5 @@ D:\MilkStore\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.sourcelink.j
 D:\MilkStore\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.dll
 D:\MilkStore\MilkStoreV4\Repositories\obj\Debug\net8.0\refint\Repositories.dll
 D:\MilkStore\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.pdb
-D:\MilkStore\MilkStoreV4\Repositories\bin\Debug\net8.0\Repositories.deps.json
-D:\MilkStore\MilkStoreV4\Repositories\bin\Debug\net8.0\Repositories.runtimeconfig.json
-D:\MilkStore\MilkStoreV4\Repositories\bin\Debug\net8.0\Repositories.dll
-D:\MilkStore\MilkStoreV4\Repositories\bin\Debug\net8.0\Repositories.pdb
 D:\MilkStore\MilkStoreV4\Repositories\obj\Debug\net8.0\Repositories.genruntimeconfig.cache
 D:\MilkStore\MilkStoreV4\Repositories\obj\Debug\net8.0\ref\Repositories.dll

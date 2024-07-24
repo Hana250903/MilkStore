@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\MilkStore\\MilkStoreV4\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{33A2EA9D-1A1E-4A71-BA7C-E4D51C458CA0}|MilkStoreV4\\MilkStoreV4.csproj|d:\\milkstore\\milkstorev4\\milkstorev4\\controllers\\orderdetailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33A2EA9D-1A1E-4A71-BA7C-E4D51C458CA0}|MilkStoreV4\\MilkStoreV4.csproj|solutionrelative:milkstorev4\\controllers\\orderdetailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33A2EA9D-1A1E-4A71-BA7C-E4D51C458CA0}|MilkStoreV4\\MilkStoreV4.csproj|d:\\milkstore\\milkstorev4\\milkstorev4\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33A2EA9D-1A1E-4A71-BA7C-E4D51C458CA0}|MilkStoreV4\\MilkStoreV4.csproj|solutionrelative:milkstorev4\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33A2EA9D-1A1E-4A71-BA7C-E4D51C458CA0}|MilkStoreV4\\MilkStoreV4.csproj|d:\\milkstore\\milkstorev4\\milkstorev4\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33A2EA9D-1A1E-4A71-BA7C-E4D51C458CA0}|MilkStoreV4\\MilkStoreV4.csproj|solutionrelative:milkstorev4\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,6 +71,45 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderDetailController.cs",
+              "DocumentMoniker": "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\Controllers\\OrderDetailController.cs",
+              "RelativeDocumentMoniker": "MilkStoreV4\\Controllers\\OrderDetailController.cs",
+              "ToolTip": "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\Controllers\\OrderDetailController.cs",
+              "RelativeToolTip": "MilkStoreV4\\Controllers\\OrderDetailController.cs",
+              "ViewState": "AQIAAFkAAAAAAAAAAAAAAG4AAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T07:25:30.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "MilkStoreV4\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "MilkStoreV4\\Controllers\\OrderController.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T07:25:22.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderDTO.cs",
+              "DocumentMoniker": "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\DTOs\\OrderDTO.cs",
+              "RelativeDocumentMoniker": "MilkStoreV4\\DTOs\\OrderDTO.cs",
+              "ToolTip": "D:\\MilkStore\\MilkStoreV4\\MilkStoreV4\\DTOs\\OrderDTO.cs",
+              "RelativeToolTip": "MilkStoreV4\\DTOs\\OrderDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T07:25:14.757Z",
+              "EditorCaption": ""
             }
           ]
         }
